@@ -1,6 +1,6 @@
 package net.sandikta.smp.aplikasi.entities.enums;
 
-public enum NamaKegiatan {
+public enum Kegiatan {
 
 	PRAMUKA,
 	DRUMBAND,

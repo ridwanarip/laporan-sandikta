@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,16 +25,27 @@ public class Siswa {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_PELAJAR")
-	private Integer idPelajar;
+	@Column(name="ID_SISWA")
+	private Integer idSiswa;
 
 	@Column(name="NO_INDUK_SISWA", unique=true, nullable=false)
 	private Integer noInduk;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="ID_PELAJAR")
-	private List<NilaiMataPelajaran> nilaiMatpel = new 
-			ArrayList<NilaiMataPelajaran>();
+	private List<NilaiSiswa> nilaiMatpel = new 
+			ArrayList<NilaiSiswa>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="ID_PELAJAR")
+	private List<KegiatanSiswa> kegiatan = new 
+			ArrayList<KegiatanSiswa>();
+	
+	@Embedded
+	private BudiPekertiSiswa budiPekerti;
+	
+	@Embedded
+	private AbsensiSiswa absensi;
 
 	@Column(name="NAMA_SISWA", nullable=false, length=50)
 	private String nama;
@@ -51,13 +63,13 @@ public class Siswa {
 	@Column(name="SEMESTER", nullable=false)
 	@Enumerated(EnumType.STRING)
 	private Semester semester;
-	
+
 	public Integer getIdPelajar() {
-		return idPelajar;
+		return idSiswa;
 	}
 
-	public void setIdPelajar(Integer idPelajar) {
-		this.idPelajar = idPelajar;
+	public void setIdPelajar(Integer idSiswa) {
+		this.idSiswa = idSiswa;
 	}
 
 	public Integer getNoInduk() {
@@ -66,6 +78,38 @@ public class Siswa {
 
 	public void setNoInduk(Integer noInduk) {
 		this.noInduk = noInduk;
+	}
+
+	public List<NilaiSiswa> getNilaiMatpel() {
+		return nilaiMatpel;
+	}
+
+	public void setNilaiMatpel(List<NilaiSiswa> nilaiMatpel) {
+		this.nilaiMatpel = nilaiMatpel;
+	}
+
+	public List<KegiatanSiswa> getKegiatan() {
+		return kegiatan;
+	}
+
+	public void setKegiatan(List<KegiatanSiswa> kegiatan) {
+		this.kegiatan = kegiatan;
+	}
+
+	public BudiPekertiSiswa getBudiPekerti() {
+		return budiPekerti;
+	}
+
+	public void setBudiPekerti(BudiPekertiSiswa budiPekerti) {
+		this.budiPekerti = budiPekerti;
+	}
+
+	public AbsensiSiswa getAbsensi() {
+		return absensi;
+	}
+
+	public void setAbsensi(AbsensiSiswa absensi) {
+		this.absensi = absensi;
 	}
 
 	public String getNama() {
@@ -107,18 +151,4 @@ public class Siswa {
 	public void setSemester(Semester semester) {
 		this.semester = semester;
 	}
-
-	public List<NilaiMataPelajaran> getNilaiMatpel() {
-		return nilaiMatpel;
-	}
-
-	public void setNilaiMatpel(List<NilaiMataPelajaran> nilaiMatpel) {
-		this.nilaiMatpel = nilaiMatpel;
-	}
-
-	// private Kegiatan kegiatan;
-	//
-	// private BudiPekerti budiPekerti;
-	//
-	// private KetidakHadiran ketidakHadiran;
 }
