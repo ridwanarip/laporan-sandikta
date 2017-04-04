@@ -9,7 +9,7 @@ import net.sandikta.smp.aplikasi.entities.KegiatanSiswa;
 import net.sandikta.smp.aplikasi.entities.NilaiSiswa;
 import net.sandikta.smp.aplikasi.entities.Siswa;
 import net.sandikta.smp.aplikasi.entities.enums.BudiPekerti;
-import net.sandikta.smp.aplikasi.entities.enums.Kegiatan;
+import net.sandikta.smp.aplikasi.entities.enums.NamaKegiatan;
 import net.sandikta.smp.aplikasi.entities.enums.Kelas;
 import net.sandikta.smp.aplikasi.entities.enums.MataPelajaran;
 import net.sandikta.smp.aplikasi.entities.enums.NilaiKegiatan;
@@ -24,8 +24,7 @@ public class AppSiswa {
 		try {
 			Transaction transaction = session.beginTransaction();
 			
-			session.save(getSiswa1());
-			session.save(getSiswa2());
+			session.persist(getSiswa1());
 			transaction.commit();
 
 		} catch (Exception e) {
@@ -39,11 +38,11 @@ public class AppSiswa {
 	public static Siswa getSiswa1() {
 		
 		Siswa siswa = new Siswa();
-		siswa.setNoInduk(201312);
+		siswa.setNoInduk("201312");
 		siswa.setNama("Ridwan");
 		siswa.setAlamat("Griya Alam");
 		siswa.setKelas(Kelas.IXA);
-		siswa.setTahunPelajaran("2016/2017");
+		siswa.setTahunAjaran("2016/2017");
 		siswa.setSemester(Semester.GANJIL);
 		
 		NilaiSiswa nilai = new NilaiSiswa();
@@ -61,8 +60,19 @@ public class AppSiswa {
 		nilai2.setKeterangan(MataPelajaran.ILMU_PENGETAHUAN_ALAM.getNilaiKkm());
 		
 		KegiatanSiswa kegiatan = new KegiatanSiswa();
-		kegiatan.setKegiatan(Kegiatan.DRUMBAND);
-		kegiatan.setNilai(NilaiKegiatan.B);
+		kegiatan.setPramuka(NamaKegiatan.PRAMUKA.toString());
+		kegiatan.setDrumband(NamaKegiatan.DRUMBAND.toString());
+		kegiatan.setPaduanSuara(NamaKegiatan.PADUAN_SUARA.toString());
+		kegiatan.setFutsal(NamaKegiatan.FUTSAL.toString());
+		kegiatan.setBeatbox(NamaKegiatan.BEATBOX.toString());
+		kegiatan.setTaekwondo(NamaKegiatan.TAEKWONDO.toString());
+		
+		kegiatan.setNilaiPramuka(NilaiKegiatan.A.toString());
+		kegiatan.setNilaiDrumband(NilaiKegiatan.B.toString());
+		kegiatan.setNilaiPaduanSuara(NilaiKegiatan.A.toString());
+		kegiatan.setNilaiFutsal(NilaiKegiatan.B.toString());
+		kegiatan.setNilaiBeatbox(NilaiKegiatan.A.toString());
+		kegiatan.setNilaiTaekwondo(NilaiKegiatan.A.toString());
 		
 		AbsensiSiswa absen = new AbsensiSiswa();
 		absen.setAlpha(2);
@@ -75,56 +85,56 @@ public class AppSiswa {
 		
 		siswa.getNilaiMatpel().add(nilai);
 		siswa.getNilaiMatpel().add(nilai2);
-		siswa.getKegiatan().add(kegiatan);
 		siswa.setAbsensi(absen);
+		siswa.setKegiatan(kegiatan);
 		siswa.setBudiPekerti(budiPekerti);
 		
 		return siswa;
 	}
 	
-	public static Siswa getSiswa2() {
-		
-		Siswa siswa = new Siswa();
-		siswa.setNoInduk(201313);
-		siswa.setNama("Andre");
-		siswa.setAlamat("Limus Pratama");
-		siswa.setKelas(Kelas.IXA);
-		siswa.setTahunPelajaran("2016/2017");
-		siswa.setSemester(Semester.GANJIL);
-		
-		NilaiSiswa nilai = new NilaiSiswa();
-		nilai.setNama(MataPelajaran.MATEMATIKA);
-		nilai.setKkm(MataPelajaran.MATEMATIKA);
-		nilai.setNilaiAngka((double) 72.5);
-		nilai.setNilaiHuruf((double) 72.5);
-		nilai.setKeterangan(MataPelajaran.MATEMATIKA.getNilaiKkm());
-		
-		NilaiSiswa nilai2 = new NilaiSiswa();
-		nilai2.setNama(MataPelajaran.ILMU_PENGETAHUAN_ALAM);
-		nilai2.setKkm(MataPelajaran.ILMU_PENGETAHUAN_ALAM);
-		nilai2.setNilaiAngka((double) 72);
-		nilai2.setNilaiHuruf((double) 72);
-		nilai2.setKeterangan(MataPelajaran.ILMU_PENGETAHUAN_ALAM.getNilaiKkm());
-		
-		KegiatanSiswa kegiatan = new KegiatanSiswa();
-		kegiatan.setKegiatan(Kegiatan.FUTSAL);
-		kegiatan.setNilai(NilaiKegiatan.B);
-		
-		AbsensiSiswa absen = new AbsensiSiswa();
-		absen.setAlpha(2);
-		absen.setIjin(1);
-		absen.setSakit(3);
-		
-		BudiPekertiSiswa budiPekerti = new BudiPekertiSiswa();
-		budiPekerti.setAkhlak(BudiPekerti.CUKUP_BAIK);
-		budiPekerti.setKepribadian(BudiPekerti.BAIK);
-		
-		siswa.getNilaiMatpel().add(nilai);
-		siswa.getNilaiMatpel().add(nilai2);
-		siswa.getKegiatan().add(kegiatan);
-		siswa.setAbsensi(absen);
-		siswa.setBudiPekerti(budiPekerti);
-		
-		return siswa;
-	}
+//	public static Siswa getSiswa2() {
+//		
+//		Siswa siswa = new Siswa();
+//		siswa.setNoInduk(201313);
+//		siswa.setNama("Andre");
+//		siswa.setAlamat("Limus Pratama");
+//		siswa.setKelas(Kelas.IXA);
+//		siswa.setTahunPelajaran("2016/2017");
+//		siswa.setSemester(Semester.GANJIL);
+//		
+//		NilaiSiswa nilai = new NilaiSiswa();
+//		nilai.setNama(MataPelajaran.MATEMATIKA);
+//		nilai.setKkm(MataPelajaran.MATEMATIKA);
+//		nilai.setNilaiAngka((double) 72.5);
+//		nilai.setNilaiHuruf((double) 72.5);
+//		nilai.setKeterangan(MataPelajaran.MATEMATIKA.getNilaiKkm());
+//		
+//		NilaiSiswa nilai2 = new NilaiSiswa();
+//		nilai2.setNama(MataPelajaran.ILMU_PENGETAHUAN_ALAM);
+//		nilai2.setKkm(MataPelajaran.ILMU_PENGETAHUAN_ALAM);
+//		nilai2.setNilaiAngka((double) 72);
+//		nilai2.setNilaiHuruf((double) 72);
+//		nilai2.setKeterangan(MataPelajaran.ILMU_PENGETAHUAN_ALAM.getNilaiKkm());
+//		
+//		KegiatanSiswa kegiatan = new KegiatanSiswa();
+//		kegiatan.setKegiatan(Kegiatan.FUTSAL);
+//		kegiatan.setNilai(NilaiKegiatan.B);
+//		
+//		AbsensiSiswa absen = new AbsensiSiswa();
+//		absen.setAlpha(2);
+//		absen.setIjin(1);
+//		absen.setSakit(3);
+//		
+//		BudiPekertiSiswa budiPekerti = new BudiPekertiSiswa();
+//		budiPekerti.setAkhlak(BudiPekerti.CUKUP_BAIK);
+//		budiPekerti.setKepribadian(BudiPekerti.BAIK);
+//		
+//		siswa.getNilaiMatpel().add(nilai);
+//		siswa.getNilaiMatpel().add(nilai2);
+////		siswa.getKegiatan().add(kegiatan);
+//		siswa.setAbsensi(absen);
+//		siswa.setBudiPekerti(budiPekerti);
+//		
+//		return siswa;
+//	}
 }

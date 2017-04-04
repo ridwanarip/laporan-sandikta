@@ -17,7 +17,7 @@ public class UserAccount {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ACCOUNT_ID")
-	private Integer idAccount;
+	private Long idAccount;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="GURU_ID")
@@ -29,11 +29,11 @@ public class UserAccount {
 	@Column(name="PASSWORD", nullable=false)
 	private String password;
 
-	public Integer getIdAccount() {
+	public Long getIdAccount() {
 		return idAccount;
 	}
 
-	public void setIdAccount(Integer idAccount) {
+	public void setIdAccount(Long idAccount) {
 		this.idAccount = idAccount;
 	}
 

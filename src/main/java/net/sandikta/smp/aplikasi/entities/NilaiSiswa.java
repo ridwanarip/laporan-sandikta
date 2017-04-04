@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 import net.sandikta.smp.aplikasi.entities.enums.DeskripsiBelajar;
 import net.sandikta.smp.aplikasi.entities.enums.MataPelajaran;
 
@@ -19,7 +20,7 @@ public class NilaiSiswa {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_NILAI_MATPEL")
-	private Integer idNilaiMatpel;
+	private Long idNilaiMatpel;
 
 	@Column(name="MATA_PELAJARAN")
 	@Enumerated(EnumType.STRING)
@@ -38,11 +39,11 @@ public class NilaiSiswa {
 	@Enumerated(EnumType.STRING)
 	private DeskripsiBelajar keterangan;
 
-	public Integer getIdNilaiMatpel() {
+	public Long getIdNilaiMatpel() {
 		return idNilaiMatpel;
 	}
 
-	public void setIdNilaiMatpel(Integer idNilaiMatpel) {
+	public void setIdNilaiMatpel(Long idNilaiMatpel) {
 		this.idNilaiMatpel = idNilaiMatpel;
 	}
 

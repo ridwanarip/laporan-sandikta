@@ -4,5 +4,6 @@ public enum NilaiKegiatan {
 
 	A,
 	B,
-	C
+	C,
+	NULL
 }

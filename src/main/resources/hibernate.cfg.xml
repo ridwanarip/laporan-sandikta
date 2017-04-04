@@ -34,13 +34,15 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
-        <mapping class="net.sandikta.smp.aplikasi.entities.UserAccount"/>
-        <mapping class="net.sandikta.smp.aplikasi.entities.Guru"/>
+		<mapping class="net.sandikta.smp.aplikasi.entities.UserAccount"/>
+		<mapping class="net.sandikta.smp.aplikasi.entities.Guru"/>
         <mapping class="net.sandikta.smp.aplikasi.entities.Siswa"/>
         <mapping class="net.sandikta.smp.aplikasi.entities.NilaiSiswa"/>
         <mapping class="net.sandikta.smp.aplikasi.entities.KegiatanSiswa"/>
+        <mapping class="net.sandikta.smp.aplikasi.entities.AbsensiSiswa"/>
+        <mapping class="net.sandikta.smp.aplikasi.entities.BudiPekertiSiswa"/>
 
     </session-factory>
 

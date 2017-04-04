@@ -14,7 +14,7 @@ public class Guru {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="GURU_ID")
-	private Integer guruId;
+	private Long guruId;
 	
 	@Column(name="NIK", unique=true, nullable=false, length=5)
 	private String nik;
@@ -25,11 +25,11 @@ public class Guru {
 	@Column(name="ALAMAT", nullable=false)
 	private String alamat;
 
-	public Integer getGuruId() {
+	public Long getGuruId() {
 		return guruId;
 	}
 
-	public void setGuruId(Integer guruId) {
+	public void setGuruId(Long guruId) {
 		this.guruId = guruId;
 	}
 

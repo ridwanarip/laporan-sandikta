@@ -1,15 +1,30 @@
 package net.sandikta.smp.aplikasi.entities;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 
 import net.sandikta.smp.aplikasi.entities.enums.BudiPekerti;
 
-@Embeddable
+@Entity
+@Table(name="BUDI_PEKERTI_SISWA")
 public class BudiPekertiSiswa {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_BUDI_PEKERTI")
+	private Long idBudiPekerti;
+	
+	@OneToOne(mappedBy="budiPekerti")
+	private Siswa siswa;
+	
 	@Column(name="AKHLAK_SISWA", nullable=false)
 	@Enumerated(EnumType.STRING)
 	private BudiPekerti akhlak;
@@ -17,6 +32,22 @@ public class BudiPekertiSiswa {
 	@Column(name="KEPRIBADIAN_SISWA", nullable=false)
 	@Enumerated(EnumType.STRING)
 	private BudiPekerti kepribadian;
+
+	public Long getIdBudiPekerti() {
+		return idBudiPekerti;
+	}
+
+	public void setIdBudiPekerti(Long idBudiPekerti) {
+		this.idBudiPekerti = idBudiPekerti;
+	}
+
+	public Siswa getSiswa() {
+		return siswa;
+	}
+
+	public void setSiswa(Siswa siswa) {
+		this.siswa = siswa;
+	}
 
 	public BudiPekerti getAkhlak() {
 		return akhlak;

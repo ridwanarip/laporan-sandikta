@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import net.sandikta.smp.aplikasi.entities.enums.Kelas;
@@ -26,25 +26,25 @@ public class Siswa {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_SISWA")
-	private Integer idSiswa;
+	private Long idSiswa;
 
 	@Column(name="NO_INDUK_SISWA", unique=true, nullable=false)
-	private Integer noInduk;
+	private String noInduk;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="ID_PELAJAR")
-	private List<NilaiSiswa> nilaiMatpel = new 
-			ArrayList<NilaiSiswa>();
-	
+	@JoinColumn(name="ID_SISWA")
+	private List<NilaiSiswa> nilaiMatpel = new ArrayList<NilaiSiswa>();
+
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="ID_PELAJAR")
-	private List<KegiatanSiswa> kegiatan = new 
-			ArrayList<KegiatanSiswa>();
-	
-	@Embedded
+	@JoinColumn(name="ID_SISWA")
+	private List<KegiatanSiswa> kegiatan = new ArrayList<KegiatanSiswa>();
+
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="ID_SISWA")
 	private BudiPekertiSiswa budiPekerti;
 	
-	@Embedded
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="ID_SISWA")
 	private AbsensiSiswa absensi;
 
 	@Column(name="NAMA_SISWA", nullable=false, length=50)
@@ -58,25 +58,25 @@ public class Siswa {
 	private Kelas kelas;
 
 	@Column(name="TAHUN_AJARAN", nullable=false)
-	private String tahunPelajaran;
+	private String tahunAjaran;
 
 	@Column(name="SEMESTER", nullable=false)
 	@Enumerated(EnumType.STRING)
 	private Semester semester;
 
-	public Integer getIdPelajar() {
+	public Long getIdSiswa() {
 		return idSiswa;
 	}
 
-	public void setIdPelajar(Integer idSiswa) {
+	public void setIdSiswa(Long idSiswa) {
 		this.idSiswa = idSiswa;
 	}
 
-	public Integer getNoInduk() {
+	public String getNoInduk() {
 		return noInduk;
 	}
 
-	public void setNoInduk(Integer noInduk) {
+	public void setNoInduk(String noInduk) {
 		this.noInduk = noInduk;
 	}
 
@@ -88,12 +88,12 @@ public class Siswa {
 		this.nilaiMatpel = nilaiMatpel;
 	}
 
-	public List<KegiatanSiswa> getKegiatan() {
-		return kegiatan;
+	public KegiatanSiswa getKegiatan() {
+		return (KegiatanSiswa) kegiatan;
 	}
 
-	public void setKegiatan(List<KegiatanSiswa> kegiatan) {
-		this.kegiatan = kegiatan;
+	public void setKegiatan(KegiatanSiswa kegiatan) {
+		this.kegiatan = (List<KegiatanSiswa>) kegiatan;
 	}
 
 	public BudiPekertiSiswa getBudiPekerti() {
@@ -136,12 +136,12 @@ public class Siswa {
 		this.kelas = kelas;
 	}
 
-	public String getTahunPelajaran() {
-		return tahunPelajaran;
+	public String getTahunAjaran() {
+		return tahunAjaran;
 	}
 
-	public void setTahunPelajaran(String tahunPelajaran) {
-		this.tahunPelajaran = tahunPelajaran;
+	public void setTahunAjaran(String tahunAjaran) {
+		this.tahunAjaran = tahunAjaran;
 	}
 
 	public Semester getSemester() {

@@ -15,5 +15,6 @@ public class App {
 		session.beginTransaction();
 		session.getTransaction().commit();
 		session.close();
+		sessionFactory.close();
 	}
 }
