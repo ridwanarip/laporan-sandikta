@@ -3,6 +3,7 @@ package net.sandikta.smp.aplikasi.test;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import net.sandikta.smp.aplikasi.dao.HibernateUtil;
 import net.sandikta.smp.aplikasi.entities.Siswa;
 
 public class AppSelectSiswa {
@@ -16,7 +17,7 @@ public class AppSelectSiswa {
 			Transaction transaction = session.beginTransaction();
 			
 			Siswa siswa = session.get(Siswa.class, 1L);
-			System.out.println("Method executed");
+			System.out.println("\nMethod executed");
 			System.out.println(siswa.getNama());
 			
 			transaction.commit();

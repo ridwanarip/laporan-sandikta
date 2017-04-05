@@ -1,9 +1,14 @@
 package net.sandikta.smp.aplikasi.test;
 
+import java.util.List;
+
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
+import net.sandikta.smp.aplikasi.dao.SiswaDao;
+import net.sandikta.smp.aplikasi.dao.interfaces.Dao;
 import net.sandikta.smp.aplikasi.entities.AbsensiSiswa;
 import net.sandikta.smp.aplikasi.entities.BudiPekertiSiswa;
 import net.sandikta.smp.aplikasi.entities.KegiatanSiswa;
@@ -18,26 +23,41 @@ import net.sandikta.smp.aplikasi.entities.enums.NilaiBudiPekerti;
 import net.sandikta.smp.aplikasi.entities.enums.NilaiKegiatan;
 import net.sandikta.smp.aplikasi.entities.enums.Semester;
 
-public class AppSiswa {
+public class AppDaoSiswa {
 
 	public static void main(String[] args) {
-		Session session = HibernateUtil.getSessionFactory()
-				.openSession();
-
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		Transaction tx = null;
+		
 		try {
-			Transaction transaction = session.beginTransaction();
+			
+			sessionFactory = HibernateUtil.getSessionFactory();
+			session = sessionFactory.openSession();
+			Dao<Siswa> daoSiswa = new SiswaDao();
+			daoSiswa.setSession(session);
 
-			session.save(getSiswa1());
-			transaction.commit();
-
+			tx = session.beginTransaction();
+			
+			Siswa siswa = getSiswa1();
+			daoSiswa.save(siswa);
+			
+			List<Siswa> sis = daoSiswa.findAll();
+			for (Siswa s : sis) {
+				System.out.println("\nNama: " + s.getNama());
+			}
+			
+			tx.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			tx.rollback();
 		} finally {
 			session.close();
-			HibernateUtil.getSessionFactory().close();
+			sessionFactory.close();
 		}
 	}
-
+	
 	public static Siswa getSiswa1() {
 
 		Siswa siswa = new Siswa();
@@ -53,44 +73,26 @@ public class AppSiswa {
 		nilai1.setKkm(MataPelajaran.BAHASA_INDONESIA);
 		nilai1.setNilaiAngka((double) 71.5);
 		nilai1.setNilaiHuruf((double) 71.5);
-		nilai1.setKeterangan(
-				MataPelajaran.BAHASA_INDONESIA.getNilaiKkm());
+		nilai1.setKeterangan(MataPelajaran.BAHASA_INDONESIA.getNilaiKkm());
 
 		NilaiSiswa nilai2 = new NilaiSiswa();
 		nilai2.setNama(MataPelajaran.ILMU_PENGETAHUAN_ALAM);
 		nilai2.setKkm(MataPelajaran.ILMU_PENGETAHUAN_ALAM);
 		nilai2.setNilaiAngka((double) 72);
 		nilai2.setNilaiHuruf((double) 72);
-		nilai2.setKeterangan(
-				MataPelajaran.ILMU_PENGETAHUAN_ALAM.getNilaiKkm());
+		nilai2.setKeterangan(MataPelajaran.ILMU_PENGETAHUAN_ALAM.getNilaiKkm());
 
 		KegiatanSiswa kegiatan1 = new KegiatanSiswa();
 		KegiatanSiswa kegiatan2 = new KegiatanSiswa();
-		// kegiatan.setPramuka(NamaKegiatan.PRAMUKA.toString());
-		// kegiatan.setDrumband(NamaKegiatan.DRUMBAND.toString());
-		// kegiatan.setPaduanSuara(NamaKegiatan.PADUAN_SUARA.toString());
-		// kegiatan.setFutsal(NamaKegiatan.FUTSAL.toString());
-		// kegiatan.setBeatbox(NamaKegiatan.BEATBOX.toString());
-		// kegiatan.setTaekwondo(NamaKegiatan.TAEKWONDO.toString());
 		
 		kegiatan1.setNamaKegiatan(NamaKegiatan.PRAMUKA);
 		kegiatan1.setNilaiKegiatan(NilaiKegiatan.B);
 		kegiatan2.setNamaKegiatan(NamaKegiatan.FUTSAL);
 		kegiatan2.setNilaiKegiatan(NilaiKegiatan.A);
 
-		// kegiatan.setNilaiPramuka(NilaiKegiatan.A.toString());
-		// kegiatan.setNilaiDrumband(NilaiKegiatan.B.toString());
-		// kegiatan.setNilaiPaduanSuara(NilaiKegiatan.A.toString());
-		// kegiatan.setNilaiFutsal(NilaiKegiatan.B.toString());
-		// kegiatan.setNilaiBeatbox(NilaiKegiatan.A.toString());
-		// kegiatan.setNilaiTaekwondo(NilaiKegiatan.A.toString());
-
 		AbsensiSiswa ijin = new AbsensiSiswa();
 		AbsensiSiswa sakit = new AbsensiSiswa();
 		AbsensiSiswa alpha = new AbsensiSiswa();
-		// absen.setAlpha(2);
-		// absen.setIjin(1);
-		// absen.setSakit(3);
 		
 		ijin.setNamaAbsensi(NamaAbsensi.IJIN);
 		ijin.setJumlah(2);
@@ -101,8 +103,6 @@ public class AppSiswa {
 
 		BudiPekertiSiswa akhlak = new BudiPekertiSiswa();
 		BudiPekertiSiswa kepribadian = new BudiPekertiSiswa();
-		// budiPekerti.setAkhlak(BudiPekerti.CUKUP_BAIK);
-		// budiPekerti.setKepribadian(BudiPekerti.BAIK);
 
 		akhlak.setNamaBudiPekerti(NamaBudiPekerti.AKHLAK);
 		akhlak.setNilaiBudiPekerti(NilaiBudiPekerti.BAIK);
@@ -118,9 +118,6 @@ public class AppSiswa {
 		siswa.getAbsensi().add(alpha);
 		siswa.getBudiPekerti().add(akhlak);
 		siswa.getBudiPekerti().add(kepribadian);
-		// siswa.setAbsensi(absen);
-		// siswa.setKegiatan(kegiatan);
-		// siswa.setBudiPekerti(budiPekerti);
 
 		return siswa;
 	}

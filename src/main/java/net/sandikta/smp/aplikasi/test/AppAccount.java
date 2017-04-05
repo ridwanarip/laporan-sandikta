@@ -3,6 +3,7 @@ package net.sandikta.smp.aplikasi.test;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import net.sandikta.smp.aplikasi.dao.HibernateUtil;
 import net.sandikta.smp.aplikasi.entities.Guru;
 import net.sandikta.smp.aplikasi.entities.UserAccount;
 
