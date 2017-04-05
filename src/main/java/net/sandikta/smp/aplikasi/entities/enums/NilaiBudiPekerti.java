@@ -1,6 +1,6 @@
 package net.sandikta.smp.aplikasi.entities.enums;
 
-public enum BudiPekerti {
+public enum NilaiBudiPekerti {
 
 	SANGAT_BAIK,
 	BAIK,

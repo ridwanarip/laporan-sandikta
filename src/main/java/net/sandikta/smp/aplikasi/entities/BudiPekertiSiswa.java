@@ -7,11 +7,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-import net.sandikta.smp.aplikasi.entities.enums.BudiPekerti;
+import net.sandikta.smp.aplikasi.entities.enums.NamaBudiPekerti;
+import net.sandikta.smp.aplikasi.entities.enums.NilaiBudiPekerti;
 
 @Entity
 @Table(name="BUDI_PEKERTI_SISWA")
@@ -22,16 +21,13 @@ public class BudiPekertiSiswa {
 	@Column(name="ID_BUDI_PEKERTI")
 	private Long idBudiPekerti;
 	
-	@OneToOne(mappedBy="budiPekerti")
-	private Siswa siswa;
-	
-	@Column(name="AKHLAK_SISWA", nullable=false)
+	@Column(name="NAMA_BUDI_PEKERTIA")
 	@Enumerated(EnumType.STRING)
-	private BudiPekerti akhlak;
+	private NamaBudiPekerti namaBudiPekerti;
 
-	@Column(name="KEPRIBADIAN_SISWA", nullable=false)
+	@Column(name="NILAI_BUDI_PEKERTI")
 	@Enumerated(EnumType.STRING)
-	private BudiPekerti kepribadian;
+	private NilaiBudiPekerti nilaiBudiPekerti;
 
 	public Long getIdBudiPekerti() {
 		return idBudiPekerti;
@@ -41,37 +37,19 @@ public class BudiPekertiSiswa {
 		this.idBudiPekerti = idBudiPekerti;
 	}
 
-	public Siswa getSiswa() {
-		return siswa;
+	public NamaBudiPekerti getNamaBudiPekerti() {
+		return namaBudiPekerti;
 	}
 
-	public void setSiswa(Siswa siswa) {
-		this.siswa = siswa;
+	public void setNamaBudiPekerti(NamaBudiPekerti namaBudiPekerti) {
+		this.namaBudiPekerti = namaBudiPekerti;
 	}
 
-	public BudiPekerti getAkhlak() {
-		return akhlak;
+	public NilaiBudiPekerti getNilaiBudiPekerti() {
+		return nilaiBudiPekerti;
 	}
 
-	public void setAkhlak(BudiPekerti nilaiAkhlak) {
-		// this.akhlak = akhlak;
-		try {
-			this.akhlak = nilaiAkhlak;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public BudiPekerti getKepribadian() {
-		return kepribadian;
-	}
-
-	public void setKepribadian(BudiPekerti nilaiKepribadian) {
-		// this.kepribadian = kepribadian;
-		try {
-			this.kepribadian = nilaiKepribadian;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void setNilaiBudiPekerti(NilaiBudiPekerti nilaiBudiPekerti) {
+		this.nilaiBudiPekerti = nilaiBudiPekerti;
 	}
 }

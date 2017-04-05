@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import net.sandikta.smp.aplikasi.entities.enums.Kelas;
@@ -39,13 +38,13 @@ public class Siswa {
 	@JoinColumn(name="ID_SISWA")
 	private List<KegiatanSiswa> kegiatan = new ArrayList<KegiatanSiswa>();
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="ID_SISWA")
-	private BudiPekertiSiswa budiPekerti;
+	private List<BudiPekertiSiswa> budiPekerti = new ArrayList<BudiPekertiSiswa>();
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="ID_SISWA")
-	private AbsensiSiswa absensi;
+	private List<AbsensiSiswa> absensi = new ArrayList<AbsensiSiswa>();
 
 	@Column(name="NAMA_SISWA", nullable=false, length=50)
 	private String nama;
@@ -88,27 +87,27 @@ public class Siswa {
 		this.nilaiMatpel = nilaiMatpel;
 	}
 
-	public KegiatanSiswa getKegiatan() {
-		return (KegiatanSiswa) kegiatan;
+	public List<KegiatanSiswa> getKegiatan() {
+		return kegiatan;
 	}
 
-	public void setKegiatan(KegiatanSiswa kegiatan) {
-		this.kegiatan = (List<KegiatanSiswa>) kegiatan;
+	public void setKegiatan(List<KegiatanSiswa> kegiatan) {
+		this.kegiatan = kegiatan;
 	}
 
-	public BudiPekertiSiswa getBudiPekerti() {
+	public List<BudiPekertiSiswa> getBudiPekerti() {
 		return budiPekerti;
 	}
 
-	public void setBudiPekerti(BudiPekertiSiswa budiPekerti) {
+	public void setBudiPekerti(List<BudiPekertiSiswa> budiPekerti) {
 		this.budiPekerti = budiPekerti;
 	}
 
-	public AbsensiSiswa getAbsensi() {
+	public List<AbsensiSiswa> getAbsensi() {
 		return absensi;
 	}
 
-	public void setAbsensi(AbsensiSiswa absensi) {
+	public void setAbsensi(List<AbsensiSiswa> absensi) {
 		this.absensi = absensi;
 	}
 

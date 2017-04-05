@@ -2,12 +2,14 @@ package net.sandikta.smp.aplikasi.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import net.sandikta.smp.aplikasi.entities.enums.NamaAbsensi;
 
 @Entity
 @Table(name="ABSESNSI_SISWA")
@@ -17,24 +19,13 @@ public class AbsensiSiswa {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_ABSENSI")
 	private Long idAbsensi;
+
+	@Column(name="NAMA_ABSENSI")
+	@Enumerated(EnumType.STRING)
+	private NamaAbsensi namaAbsensi;
 	
-	@OneToOne(mappedBy="absensi")
-	private Siswa siswa;
-	
-	@Column(name="SAKIT")
-	private Integer sakit;
-	
-	@Column(name="IJIN")
-	private Integer ijin;
-	
-	@Column(name="TANPA_KETERANGAN")
-	private Integer alpha;
-	
-	public AbsensiSiswa() {
-		this.sakit = 0;
-		this.ijin = 0;
-		this.alpha = 0;
-	}
+	@Column(name="JUMLAH")
+	private Integer jumlah;
 
 	public Long getIdAbsensi() {
 		return idAbsensi;
@@ -44,35 +35,19 @@ public class AbsensiSiswa {
 		this.idAbsensi = idAbsensi;
 	}
 
-	public Siswa getSiswa() {
-		return siswa;
+	public NamaAbsensi getNamaAbsensi() {
+		return namaAbsensi;
 	}
 
-	public void setSiswa(Siswa siswa) {
-		this.siswa = siswa;
+	public void setNamaAbsensi(NamaAbsensi namaAbsensi) {
+		this.namaAbsensi = namaAbsensi;
 	}
 
-	public Integer getSakit() {
-		return sakit;
+	public Integer getJumlah() {
+		return jumlah;
 	}
 
-	public void setSakit(Integer sakit) {
-		this.sakit = sakit;
-	}
-
-	public Integer getIjin() {
-		return ijin;
-	}
-
-	public void setIjin(Integer ijin) {
-		this.ijin = ijin;
-	}
-
-	public Integer getAlpha() {
-		return alpha;
-	}
-
-	public void setAlpha(Integer alpha) {
-		this.alpha = alpha;
+	public void setJumlah(Integer jumlah) {
+		this.jumlah = jumlah;
 	}
 }
