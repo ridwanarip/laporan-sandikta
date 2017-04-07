@@ -21,11 +21,6 @@ public class SiswaDao implements Dao<Siswa> {
 		this.session = session;
 	}
 
-	public Siswa findById(String id) {
-		Siswa siswa = session.get(Siswa.class, id);
-		return siswa;
-	}
-
 	public List<Siswa> findAll() {
 		// List<Siswa> siswa = getSession().createCriteria(Siswa.class).list();
 		CriteriaQuery<Siswa> cq = session.getCriteriaBuilder()

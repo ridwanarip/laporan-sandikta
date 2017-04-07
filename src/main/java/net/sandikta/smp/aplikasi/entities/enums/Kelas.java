@@ -2,13 +2,13 @@ package net.sandikta.smp.aplikasi.entities.enums;
 
 public enum Kelas {
 
-	XIIA,
-	XIIB,
-	XIIC,
-	XIIIA,
-	XIIIB,
-	XIIIC,
+	VIIA,
+	VIIB,
+	VIIC,
+	VIIIA,
+	VIIIB,
+	VIIIC,
 	IXA,
 	IXB,
-	IXC
+	IXC,
 }

@@ -1,4 +1,4 @@
-package net.sandikta.smp.aplikasi;
+package net.sandikta.smp.aplikasi.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
