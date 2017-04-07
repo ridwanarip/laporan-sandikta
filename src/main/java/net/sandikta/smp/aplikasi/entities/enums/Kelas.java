@@ -10,5 +10,5 @@ public enum Kelas {
 	VIIIC,
 	IXA,
 	IXB,
-	IXC,
+	IXC
 }
