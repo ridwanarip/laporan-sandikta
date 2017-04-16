@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
 import net.sandikta.smp.aplikasi.dao.SiswaDao;
@@ -20,17 +19,14 @@ public class AppDaoSiswaSelect {
 	public static void main(String[] args) {
 		SessionFactory sessionFactory = null;
 		Session session = null;
-		Transaction tx = null;
 		
 		try {
 			
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<Siswa> daoSiswa = new SiswaDao();
+			Dao<Siswa, String> daoSiswa = new SiswaDao();
 			daoSiswa.setSession(session);
 
-			tx = session.beginTransaction();
-			
 			List<Siswa> siswa = daoSiswa.findAll();
 			for (Siswa s : siswa) {
 				System.out.println("\nNO: " + s.getNoInduk());
@@ -72,11 +68,8 @@ public class AppDaoSiswaSelect {
 				}
 			}
 			
-			tx.commit();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-			tx.rollback();
 		} finally {
 			session.close();
 			sessionFactory.close();

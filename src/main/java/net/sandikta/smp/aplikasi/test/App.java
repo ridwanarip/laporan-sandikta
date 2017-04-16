@@ -12,8 +12,6 @@ public class App {
 
 		Session session = sessionFactory.openSession();
 
-		session.beginTransaction();
-		session.getTransaction().commit();
 		session.close();
 		sessionFactory.close();
 	}

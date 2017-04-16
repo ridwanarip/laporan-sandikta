@@ -34,7 +34,7 @@ public class AppDaoSiswaInsert {
 			
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<Siswa> daoSiswa = new SiswaDao();
+			Dao<Siswa, String> daoSiswa = new SiswaDao();
 			daoSiswa.setSession(session);
 
 			tx = session.beginTransaction();

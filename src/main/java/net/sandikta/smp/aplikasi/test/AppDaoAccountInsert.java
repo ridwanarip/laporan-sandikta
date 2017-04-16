@@ -24,7 +24,7 @@ public class AppDaoAccountInsert {
 			
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<UserAccount> daoUser = new AccountDao();
+			Dao<UserAccount, Long> daoUser = new AccountDao();
 			daoUser.setSession(session);
 
 			tx = session.beginTransaction();

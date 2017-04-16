@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import net.sandikta.smp.aplikasi.dao.AccountDao;
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
@@ -18,17 +17,14 @@ public class AppDaoAccountSelect {
 	public static void main(String[] args) {
 		SessionFactory sessionFactory = null;
 		Session session = null;
-		Transaction tx = null;
 		
 		try {
 			
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<UserAccount> daoUser = new AccountDao();
+			Dao<UserAccount, Long> daoUser = new AccountDao();
 			daoUser.setSession(session);
 
-			tx = session.beginTransaction();
-			
 			List<UserAccount> userAccount = daoUser.findAll();
 			for (UserAccount s : userAccount) {
 				System.out.println("\nUsername: " + s.getUsername());
@@ -45,11 +41,8 @@ public class AppDaoAccountSelect {
 				}
 			}
 			
-			tx.commit();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-			tx.rollback();
 		} finally {
 			session.close();
 			sessionFactory.close();

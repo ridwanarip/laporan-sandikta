@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.sandikta.smp.aplikasi</groupId>
   <artifactId>laporan-sandikta</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>laporan-sandikta Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -34,5 +34,15 @@
   </dependencies>
   <build>
     <finalName>laporan-sandikta</finalName>
+    <plugins>
+    	<plugin>
+    		<groupId>com.zenjava</groupId>
+    		<artifactId>javafx-maven-plugin</artifactId>
+    		<version>8.8.3</version>
+    		<configuration>
+        	<mainClass>net.sandikta.smp.aplikasi.desktop.MainApp</mainClass>
+    		</configuration>
+		</plugin>
+    </plugins>
   </build>
 </project>
