@@ -18,7 +18,7 @@ public class AppSiswaSelect {
 			
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<Siswa, String> daoSiswa = new SiswaDao();
+			Dao<Siswa, Long> daoSiswa = new SiswaDao();
 			daoSiswa.setSession(session);
 			
 			Siswa sis = ((SiswaDao) daoSiswa).findByNoInduk("201314");

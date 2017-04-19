@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.UserController">
+   <children>
+      <Label fx:id="userLbl" alignment="CENTER" layoutX="174.0" layoutY="22.0" prefHeight="19.0" prefWidth="233.0" text="Welcome">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="517.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOut" text="Sign Out" />
+      <ListView fx:id="listSiswa" layoutX="81.0" layoutY="68.0" prefHeight="264.0" prefWidth="219.0" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>

@@ -24,7 +24,7 @@ public class AppDaoSiswaSelect {
 			
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<Siswa, String> daoSiswa = new SiswaDao();
+			Dao<Siswa, Long> daoSiswa = new SiswaDao();
 			daoSiswa.setSession(session);
 
 			List<Siswa> siswa = daoSiswa.findAll();
