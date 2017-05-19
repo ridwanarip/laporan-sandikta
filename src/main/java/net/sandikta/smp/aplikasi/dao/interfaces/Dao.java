@@ -7,17 +7,17 @@ import org.hibernate.Session;
 
 public interface Dao<T, ID extends Serializable> {
 
-	public List<T> findAll();
+	public void setSession(Session session);
 	
 	public T findByID(ID id);
+	
+	public List<T> findAll();
 	
 	public void save(T entity);
 	
 	public void delete(T entity);
 
-	public void setSession(Session session);
-	
 //	public void flush();
-//	
+	
 //	public void clear();
 }

@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.LoginController">
+<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.LoginController">
    <children>
-      <Button layoutX="122.0" layoutY="203.0" mnemonicParsing="false" onAction="#login" text="Button">
+      <Button fx:id="btnLogin" layoutX="122.0" layoutY="203.0" mnemonicParsing="false" onAction="#login" text="Login">
          <font>
             <Font size="14.0" />
          </font>

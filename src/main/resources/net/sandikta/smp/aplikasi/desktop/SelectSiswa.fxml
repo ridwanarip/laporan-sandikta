@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.SelectSiswaController">
+   <children>
+      <Label fx:id="lblTahunPelajaranSiswa" alignment="CENTER" layoutX="80.0" layoutY="14.0" text="Select Tahun Pelajaran Siswa">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listTahunPelajaranSiswa" layoutX="66.0" layoutY="50.0" prefHeight="115.0" prefWidth="270.0" />
+      <Button fx:id="btnUpdateTahunPelajaranSiswa" layoutX="66.0" layoutY="187.0" mnemonicParsing="false" onAction="#updateTahunPelajaranSiswa" text="Update" />
+      <Button fx:id="btnSaveTahunPelajaranSiswa" layoutX="135.0" layoutY="187.0" mnemonicParsing="false" onAction="#savePdfTahunPelajaranSiswa" text="Save PDF" />
+      <Button fx:id="btnHapusTahuPelajaranSiswa" layoutX="280.0" layoutY="187.0" mnemonicParsing="false" onAction="#hapusTahunPelajaranSiswa" text="Delete" />
+   </children>
+</AnchorPane>

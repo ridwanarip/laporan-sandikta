@@ -1,4 +1,4 @@
-package net.sandikta.smp.aplikasi.test;
+package net.sandikta.smp.aplikasi.web;
 
 public class AppDaoSiswaSelect {
 

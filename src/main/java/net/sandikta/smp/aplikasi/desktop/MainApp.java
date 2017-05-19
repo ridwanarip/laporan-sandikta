@@ -14,7 +14,7 @@ public class MainApp extends Application {
 		try {
 			// BorderPane root = new BorderPane();
 			Parent root = FXMLLoader
-					.load(getClass().getResource("Login.fxml"));
+					.load(getClass().getResource("Menu.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass()
 					.getResource("application.css").toExternalForm());

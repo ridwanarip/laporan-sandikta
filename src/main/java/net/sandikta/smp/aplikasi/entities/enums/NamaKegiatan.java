@@ -6,5 +6,6 @@ public enum NamaKegiatan {
 	DRUMBAND,
 	PADUAN_SUARA,
 	FUTSAL,
+	BEATBOX,
 	TAEKWONDO
 }

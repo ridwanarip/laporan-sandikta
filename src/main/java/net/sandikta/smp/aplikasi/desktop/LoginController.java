@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -29,7 +30,11 @@ public class LoginController {
 
 	@FXML
 	private TextField txPassword;
+	
+	@FXML
+	private Button btnLogin;
 
+	@FXML
 	public void login(ActionEvent event) {
 
 		SessionFactory sessionFactory = null;
@@ -59,7 +64,7 @@ public class LoginController {
 					Pane root = loader.load(getClass()
 							.getResource("User.fxml").openStream());
 					
-					UserController userController = (UserController) loader.getController();
+					MenuController userController = (MenuController) loader.getController();
 					userController.setUser(u);
 					
 					Scene scene = new Scene(root);

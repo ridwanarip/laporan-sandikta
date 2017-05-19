@@ -14,6 +14,7 @@ import net.sandikta.smp.aplikasi.entities.BudiPekertiSiswa;
 import net.sandikta.smp.aplikasi.entities.KegiatanSiswa;
 import net.sandikta.smp.aplikasi.entities.NilaiSiswa;
 import net.sandikta.smp.aplikasi.entities.Siswa;
+import net.sandikta.smp.aplikasi.entities.TahunPelajaran;
 import net.sandikta.smp.aplikasi.entities.enums.Kelas;
 import net.sandikta.smp.aplikasi.entities.enums.MataPelajaran;
 import net.sandikta.smp.aplikasi.entities.enums.NamaAbsensi;
@@ -48,10 +49,17 @@ public class AppDaoSiswaInsert {
 			for (Siswa s : sis) {
 				System.out.println("\nNama: " + s.getNama());
 				
-				List<NilaiSiswa> nilai = s.getNilaiMatpel();
-				for (NilaiSiswa n : nilai) {
-					System.out.println("tNilai: " + n.getNilaiAngka());
-					System.out.println("tNilai Huruf: " + n.getNilaiHuruf());
+				List<TahunPelajaran> tahunPelajaran = s.getTahunPelajaran();
+				for (TahunPelajaran tp : tahunPelajaran) {
+					System.out.println("\nTahunPelajaran: " + tp.getTahun());
+					System.out.println("\nSemster: " + tp.getSemester());
+					
+					List<NilaiSiswa> nilaiSiswa = tp.getNilaiMatpel();
+					for (NilaiSiswa ns : nilaiSiswa) {
+						System.out.println("\tNamaMatpel: " + ns.getNamaPelajaran());
+						System.out.println("\tNilai: " + ns.getNilaiAngka());
+						System.out.println("\tNilai Huruf: " + ns.getNilaiHuruf());
+					}
 				}
 			}
 			
@@ -72,10 +80,7 @@ public class AppDaoSiswaInsert {
 		siswa.setNoInduk("201312");
 		siswa.setNama("Ridwan Arip");
 		siswa.setAlamat("Griya Alam");
-		siswa.setKelas(Kelas.IXA);
-		siswa.setTahunAjaran("2016/2017");
-		siswa.setSemester(Semester.GANJIL);
-
+		
 		NilaiSiswa nilai1 = new NilaiSiswa();
 		nilai1.setNama(MataPelajaran.BAHASA_INDONESIA);
 		nilai1.setKkm(MataPelajaran.BAHASA_INDONESIA);
@@ -102,7 +107,7 @@ public class AppDaoSiswaInsert {
 		AbsensiSiswa sakit = new AbsensiSiswa();
 		AbsensiSiswa alpha = new AbsensiSiswa();
 		
-		ijin.setNamaAbsensi(NamaAbsensi.IJIN);
+		ijin.setNamaAbsensi(NamaAbsensi.IZIN);
 		ijin.setJumlah(2);
 		sakit.setNamaAbsensi(NamaAbsensi.SAKIT);
 		sakit.setJumlah(3);
@@ -117,15 +122,21 @@ public class AppDaoSiswaInsert {
 		kepribadian.setNamaBudiPekerti(NamaBudiPekerti.KEPRIBADIAN);
 		kepribadian.setNilaiBudiPekerti(NilaiBudiPekerti.SANGAT_BAIK);
 
-		siswa.getNilaiMatpel().add(nilai1);
-		siswa.getNilaiMatpel().add(nilai2);
-		siswa.getKegiatan().add(kegiatan1);
-		siswa.getKegiatan().add(kegiatan2);
-		siswa.getAbsensi().add(ijin);
-		siswa.getAbsensi().add(sakit);
-		siswa.getAbsensi().add(alpha);
-		siswa.getBudiPekerti().add(akhlak);
-		siswa.getBudiPekerti().add(kepribadian);
+		TahunPelajaran tahunPelajaran1 = new TahunPelajaran();
+		tahunPelajaran1.setTahun("2016/2017");
+		tahunPelajaran1.setKelas(Kelas.VIIA);
+		tahunPelajaran1.setSemester(Semester.GANJIL);
+		tahunPelajaran1.getNilaiMatpel().add(nilai1);
+		tahunPelajaran1.getNilaiMatpel().add(nilai2);
+		tahunPelajaran1.getKegiatan().add(kegiatan1);
+		tahunPelajaran1.getKegiatan().add(kegiatan2);
+		tahunPelajaran1.getAbsensi().add(ijin);
+		tahunPelajaran1.getAbsensi().add(sakit);
+		tahunPelajaran1.getAbsensi().add(alpha);
+		tahunPelajaran1.getBudiPekerti().add(akhlak);
+		tahunPelajaran1.getBudiPekerti().add(kepribadian);
+		
+		siswa.getTahunPelajaran().add(tahunPelajaran1);
 
 		return siswa;
 	}
@@ -136,9 +147,6 @@ public class AppDaoSiswaInsert {
 		siswa.setNoInduk("201314");
 		siswa.setNama("Dedi Septiadi");
 		siswa.setAlamat("Depok");
-		siswa.setKelas(Kelas.IXA);
-		siswa.setTahunAjaran("2016/2017");
-		siswa.setSemester(Semester.GANJIL);
 
 		NilaiSiswa nilai1 = new NilaiSiswa();
 		nilai1.setNama(MataPelajaran.BAHASA_INGGRIS);
@@ -166,7 +174,7 @@ public class AppDaoSiswaInsert {
 		AbsensiSiswa sakit = new AbsensiSiswa();
 		AbsensiSiswa alpha = new AbsensiSiswa();
 		
-		ijin.setNamaAbsensi(NamaAbsensi.IJIN);
+		ijin.setNamaAbsensi(NamaAbsensi.IZIN);
 		ijin.setJumlah(2);
 		sakit.setNamaAbsensi(NamaAbsensi.SAKIT);
 		sakit.setJumlah(1);
@@ -181,15 +189,21 @@ public class AppDaoSiswaInsert {
 		kepribadian.setNamaBudiPekerti(NamaBudiPekerti.KEPRIBADIAN);
 		kepribadian.setNilaiBudiPekerti(NilaiBudiPekerti.SANGAT_BAIK);
 
-		siswa.getNilaiMatpel().add(nilai1);
-		siswa.getNilaiMatpel().add(nilai2);
-		siswa.getKegiatan().add(kegiatan1);
-		siswa.getKegiatan().add(kegiatan2);
-		siswa.getAbsensi().add(ijin);
-		siswa.getAbsensi().add(sakit);
-		siswa.getAbsensi().add(alpha);
-		siswa.getBudiPekerti().add(akhlak);
-		siswa.getBudiPekerti().add(kepribadian);
+		TahunPelajaran tahunPelajaran1 = new TahunPelajaran();
+		tahunPelajaran1.setTahun("2016/2017");
+		tahunPelajaran1.setKelas(Kelas.VIIA);
+		tahunPelajaran1.setSemester(Semester.GANJIL);
+		tahunPelajaran1.getNilaiMatpel().add(nilai1);
+		tahunPelajaran1.getNilaiMatpel().add(nilai2);
+		tahunPelajaran1.getKegiatan().add(kegiatan1);
+		tahunPelajaran1.getKegiatan().add(kegiatan2);
+		tahunPelajaran1.getAbsensi().add(ijin);
+		tahunPelajaran1.getAbsensi().add(sakit);
+		tahunPelajaran1.getAbsensi().add(alpha);
+		tahunPelajaran1.getBudiPekerti().add(akhlak);
+		tahunPelajaran1.getBudiPekerti().add(kepribadian);
+		
+		siswa.getTahunPelajaran().add(tahunPelajaran1);
 
 		return siswa;
 	}
