@@ -284,9 +284,9 @@ public class NilaiSiswa {
 		} else if (nilaiSiswa == 88) {
 			this.nilaiHuruf = "Delapan Puluh Delapan";
 		} else if (nilaiSiswa == 88.5) {
-			this.nilaiHuruf = "Delapan Puluh Tujuh, Lima";
+			this.nilaiHuruf = "Delapan Puluh Delapan, Lima";
 		} else if (nilaiSiswa == 89) {
-			this.nilaiHuruf = "Delapan Puluh Delapan";
+			this.nilaiHuruf = "Delapan Puluh Sembilan";
 		} else if (nilaiSiswa == 89.5) {
 			this.nilaiHuruf = "Delapan Puluh Sembilan, Lima";
 			

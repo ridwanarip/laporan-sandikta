@@ -45,6 +45,6 @@ public class TahunPelajaranDao implements Dao<TahunPelajaran, Long> {
 
 	@Override
 	public void delete(TahunPelajaran tahunPelajaran) {
-		this.session.saveOrUpdate(tahunPelajaran);
+		this.session.delete(tahunPelajaran);
 	}
 }

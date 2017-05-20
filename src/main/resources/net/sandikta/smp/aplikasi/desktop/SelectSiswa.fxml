@@ -13,9 +13,10 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ListView fx:id="listTahunPelajaranSiswa" layoutX="66.0" layoutY="50.0" prefHeight="115.0" prefWidth="270.0" />
-      <Button fx:id="btnUpdateTahunPelajaranSiswa" layoutX="66.0" layoutY="187.0" mnemonicParsing="false" onAction="#updateTahunPelajaranSiswa" text="Update" />
-      <Button fx:id="btnSaveTahunPelajaranSiswa" layoutX="135.0" layoutY="187.0" mnemonicParsing="false" onAction="#savePdfTahunPelajaranSiswa" text="Save PDF" />
-      <Button fx:id="btnHapusTahuPelajaranSiswa" layoutX="280.0" layoutY="187.0" mnemonicParsing="false" onAction="#hapusTahunPelajaranSiswa" text="Delete" />
+      <ListView fx:id="listTahunPelajaranSiswa" layoutX="15.0" layoutY="112.0" prefHeight="115.0" prefWidth="370.0" />
+      <Button fx:id="btnUpdateTahunPelajaranSiswa" layoutX="90.0" layoutY="250.0" mnemonicParsing="false" onAction="#updateTahunPelajaranSiswa" text="Update" />
+      <Button fx:id="btnSaveTahunPelajaranSiswa" layoutX="160.0" layoutY="250.0" mnemonicParsing="false" onAction="#savePdfTahunPelajaranSiswa" text="Save PDF" />
+      <Button fx:id="btnHapusTahuPelajaranSiswa" layoutX="300.0" layoutY="250.0" mnemonicParsing="false" onAction="#hapusTahunPelajaranSiswa" text="Delete" />
+      <Button fx:id="btnInsertTahunPelajaranSiswa" layoutX="30.0" layoutY="250.0" mnemonicParsing="false" onAction="#insertTahunPelajaranSiswa" text="Insert" />
    </children>
 </AnchorPane>

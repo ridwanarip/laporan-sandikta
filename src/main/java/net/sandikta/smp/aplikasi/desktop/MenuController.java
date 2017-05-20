@@ -55,12 +55,9 @@ public class MenuController implements Initializable {
 	@FXML
 	private Button btnDeleteSiswa;
 	
-	public MenuController() {
-		siswaObser.addAll(getAllSiswa());
-	}
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		siswaObser.addAll(getAllSiswa());
 		listSiswa.setItems(siswaObser);
 		listSiswa.setCellFactory(new Callback<ListView<Siswa>, ListCell<Siswa>>() {
 			@Override
@@ -68,7 +65,6 @@ public class MenuController implements Initializable {
 				return new SiswaListViewCell();
 			}
 		});
-//		listSiswa.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	}
 	
 	static class SiswaListViewCell extends ListCell<Siswa> {
@@ -76,8 +72,8 @@ public class MenuController implements Initializable {
 		protected void updateItem(Siswa siswa, boolean empty) {
 			super.updateItem(siswa, empty);
 			if (siswa != null) {
-				setText(siswa.getIdSiswa() + "\t" + siswa.getNoInduk()
-						+ "\t" + siswa.getNama());
+				setText(siswa.getIdSiswa() + "\t\t" + siswa.getNoInduk()
+						+ "\t\t" + siswa.getNama());
 			}
 		}
 	}
@@ -221,7 +217,7 @@ public class MenuController implements Initializable {
 			e.printStackTrace();
 			return null;
 		} finally {
-//			session.close();
+			session.close();
 		}
 	}
 }

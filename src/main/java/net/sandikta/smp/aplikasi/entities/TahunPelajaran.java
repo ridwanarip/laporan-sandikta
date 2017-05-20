@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,13 +20,17 @@ import net.sandikta.smp.aplikasi.entities.enums.Kelas;
 import net.sandikta.smp.aplikasi.entities.enums.Semester;
 
 @Entity
-@Table(name="TAHUN_PEJARAN_SISWA")
+@Table(name="TAHUN_PELAJARAN_SISWA")
 public class TahunPelajaran {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_TAHUN_PELAJARAN")
 	private Long IdTahunPelajaran;
+	
+	@ManyToOne
+	@JoinColumn(name="ID_SISWA")
+	private Siswa siswa;
 	
 	@Column(name="TAHUN_PELAJARAN")
 	private String tahun;
@@ -60,6 +65,14 @@ public class TahunPelajaran {
 
 	public void setIdTahunPelajaran(Long idTahunPelajaran) {
 		IdTahunPelajaran = idTahunPelajaran;
+	}
+
+	public Siswa getSiswa() {
+		return siswa;
+	}
+
+	public void setSiswa(Siswa siswa) {
+		this.siswa = siswa;
 	}
 
 	public String getTahun() {

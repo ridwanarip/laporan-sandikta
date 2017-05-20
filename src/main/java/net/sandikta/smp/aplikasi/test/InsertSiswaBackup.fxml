@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.InsertSiswaController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.InsertSiswaControllerBackup">
    <children>
       <Label fx:id="lblTambahDataSiswa" alignment="CENTER" layoutX="248.0" layoutY="14.0" prefHeight="30.0" prefWidth="265.0" text="Tambah Data Siswa">
          <font>
@@ -61,7 +61,7 @@
                         <VBox layoutX="172.0" layoutY="14.0" prefHeight="194.0" prefWidth="326.0">
                            <children>
                               <TextField fx:id="txNamaSiswa" promptText="Nama Siswa" />
-                              <TextField fx:id="txNomorInduk" layoutX="10.0" layoutY="10.0" promptText="Nomor Induk Siswa [6 Karakter]">
+                              <TextField fx:id="txNomorInduk" layoutX="10.0" layoutY="10.0" promptText="Nomor Induk Siswa [6]">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -95,245 +95,130 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Nilai Pelajaran Siswa">
+          <Tab text="Nilai Siswa">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox layoutX="280.0" layoutY="50.0" prefHeight="370.0" prefWidth="370.0">
+                        <VBox layoutX="14.0" layoutY="61.0" prefHeight="370.0" prefWidth="200.0">
                            <children>
-                              <ComboBox fx:id="comboNilaiMatpel1" onAction="#comboTambahNilaiMatpel1" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 1" />
-                              <ComboBox fx:id="comboNilaiMatpel2" layoutX="10.0" layoutY="10.0" onAction="#comboTambahNilaiMatpel2" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 2">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa1" onAction="#comboTambahNilaiMatpelSiswa1" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 1" />
+                              <ComboBox fx:id="comboNilaiMatpelSiswa2" layoutX="10.0" layoutY="10.0" onAction="#comboTambahNilaiMatpelSiswa2" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 2">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel3" layoutX="10.0" layoutY="35.0" onAction="#comboTambahNilaiMatpel3" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 3">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa3" layoutX="10.0" layoutY="35.0" onAction="#comboTambahNilaiMatpelSiswa3" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 3">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel4" layoutX="10.0" layoutY="60.0" onAction="#comboTambahNilaiMatpel4" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 4">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa4" layoutX="10.0" layoutY="60.0" onAction="#comboTambahNilaiMatpelSiswa4" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 4">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel5" layoutX="10.0" layoutY="85.0" onAction="#comboTambahNilaiMatpel5" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 5">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa5" layoutX="10.0" layoutY="85.0" onAction="#comboTambahNilaiMatpelSiswa5" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 5">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel6" layoutX="10.0" layoutY="110.0" onAction="#comboTambahNilaiMatpel6" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 6">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa6" layoutX="10.0" layoutY="110.0" onAction="#comboTambahNilaiMatpelSiswa6" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 6">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel7" layoutX="10.0" layoutY="135.0" onAction="#comboTambahNilaiMatpel7" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 7">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa7" layoutX="10.0" layoutY="135.0" onAction="#comboTambahNilaiMatpelSiswa7" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 7">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel8" layoutX="10.0" layoutY="160.0" onAction="#comboTambahNilaiMatpel8" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 8">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa8" layoutX="10.0" layoutY="160.0" onAction="#comboTambahNilaiMatpelSiswa8" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 8">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel9" layoutX="10.0" layoutY="185.0" onAction="#comboTambahNilaiMatpel9" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 9">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa9" layoutX="10.0" layoutY="185.0" onAction="#comboTambahNilaiMatpelSiswa9" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 9">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel10" layoutX="10.0" layoutY="210.0" onAction="#comboTambahNilaiMatpel10" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 10">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa10" layoutX="10.0" layoutY="210.0" onAction="#comboTambahNilaiMatpelSiswa10" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 10">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel11" layoutX="10.0" layoutY="235.0" onAction="#comboTambahNilaiMatpel11" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 11">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </ComboBox>
-                              <ComboBox fx:id="comboNilaiMatpel12" layoutX="10.0" layoutY="310.0" onAction="#comboTambahNilaiMatpel12" prefHeight="25.0" prefWidth="370.0" promptText="Nama Pelajaran 12">
+                              <ComboBox fx:id="comboNilaiMatpelSiswa11" layoutX="10.0" layoutY="235.0" onAction="#comboTambahNilaiMatpelSiswa11" prefHeight="25.0" prefWidth="184.0" promptText="Nama Pelajaran 11">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
                            </children>
                         </VBox>
-                        <Label fx:id="lblNamaMataPelajaran" alignment="CENTER" layoutX="280.0" layoutY="14.0" prefHeight="30.0" prefWidth="370.0" text="Nama Mata Pelajaran">
+                        <Label fx:id="lblNamaMataPelajaran" alignment="CENTER" layoutX="14.0" layoutY="24.0" prefHeight="30.0" prefWidth="200.0" text="Nama Mata Pelajaran">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="15.0" />
                            </font>
                         </Label>
-                        <VBox layoutX="115.0" layoutY="50.0" prefHeight="370.0" prefWidth="135.0">
+                        <VBox layoutX="243.0" layoutY="61.0" prefHeight="370.0" prefWidth="175.0">
                            <children>
-                              <TextField fx:id="txNilaiPelajaran1" promptText="Nilai Angka" />
-                              <TextField fx:id="txNilaiPelajaran2" layoutX="10.0" layoutY="10.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa1" promptText="Nilai Angka" />
+                              <TextField fx:id="txNilaiSiswa2" layoutX="10.0" layoutY="10.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran3" layoutX="10.0" layoutY="35.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa3" layoutX="10.0" layoutY="35.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran4" layoutX="10.0" layoutY="60.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa4" layoutX="10.0" layoutY="60.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran5" layoutX="10.0" layoutY="85.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa5" layoutX="10.0" layoutY="85.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran6" layoutX="10.0" layoutY="110.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa6" layoutX="10.0" layoutY="110.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran7" layoutX="10.0" layoutY="135.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa7" layoutX="10.0" layoutY="135.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran8" layoutX="10.0" layoutY="160.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa8" layoutX="10.0" layoutY="160.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran9" layoutX="10.0" layoutY="185.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa9" layoutX="10.0" layoutY="185.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran10" layoutX="10.0" layoutY="210.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa10" layoutX="10.0" layoutY="210.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiPelajaran11" layoutX="10.0" layoutY="235.0" promptText="Nilai Angka">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField fx:id="txNilaiPelajaran12" layoutX="10.0" layoutY="310.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiSiswa11" layoutX="10.0" layoutY="235.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
                            </children>
                         </VBox>
-                        <Label fx:id="lblNilaiMataPelajaran" alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="30.0" prefWidth="135.0" text="Nilai">
+                        <Label fx:id="lblNilaiMataPelajaran" alignment="CENTER" layoutX="243.0" layoutY="24.0" prefHeight="30.0" prefWidth="155.0" text="Nilai">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblNoNilaiMataPelajaran" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="95.0" text="Nomor">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <VBox layoutX="14.0" layoutY="50.0" prefHeight="370.0" prefWidth="95.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="17.0" prefWidth="122.0" text="1">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="122.0" text="2">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="46.0" prefHeight="17.0" prefWidth="122.0" text="3">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="17.0" prefWidth="122.0" text="4">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="84.0" prefHeight="17.0" prefWidth="122.0" text="5">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="135.0" prefHeight="17.0" prefWidth="122.0" text="6">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="154.0" prefHeight="17.0" prefWidth="122.0" text="7">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="173.0" prefHeight="17.0" prefWidth="122.0" text="8">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="192.0" prefHeight="17.0" prefWidth="122.0" text="9">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="211.0" prefHeight="17.0" prefWidth="122.0" text="10">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="285.0" prefHeight="17.0" prefWidth="122.0" text="11">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="315.0" prefHeight="17.0" prefWidth="122.0" text="12">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                        </VBox>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -341,96 +226,74 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblNamaKegiatan" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="150.0" text="Nama Kegiatan">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblNilaiKegiatan" alignment="CENTER" layoutX="180.0" layoutY="14.0" prefHeight="30.0" prefWidth="175.0" text="Nilai Kegiatan">
+                        <Label fx:id="lblNamaMataPelajaran1" alignment="CENTER" layoutX="14.0" layoutY="30.0" prefHeight="30.0" prefWidth="200.0" text="Kegiatan Pengembangan">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <VBox layoutX="180.0" layoutY="50.0" prefHeight="220.0" prefWidth="175.0">
+                        <Label fx:id="lblNilaiMataPelajaran1" alignment="CENTER" layoutX="278.0" layoutY="30.0" prefHeight="30.0" prefWidth="154.0" text="Nilai Kegiatan">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <VBox layoutX="14.0" layoutY="69.0" prefHeight="370.0" prefWidth="200.0">
                            <children>
-                              <ComboBox fx:id="comboNilaiKegiatan1" onAction="#comboTambahNilaiKegiatan1" prefHeight="25.0" prefWidth="175.0" promptText="Nilai Kegiatan 1" />
-                              <ComboBox fx:id="comboNilaiKegiatan2" layoutX="10.0" layoutY="10.0" onAction="#comboTambahNilaiKegiatan2" prefHeight="25.0" prefWidth="175.0" promptText="Nilai Kegiatan 2">
+                              <ComboBox fx:id="comboNamaKegiatan1" onAction="#comboTambahNamaKegiatan1" prefHeight="25.0" prefWidth="184.0" promptText="Nama Kegiatan 1" />
+                              <ComboBox fx:id="comboNamaKegiatan2" layoutX="10.0" layoutY="10.0" onAction="#comboTambahNamaKegiatan2" prefHeight="25.0" prefWidth="184.0" promptText="Nama Kegiatan 2">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiKegiatan3" layoutX="10.0" layoutY="35.0" onAction="#comboTambahNilaiKegiatan3" prefHeight="25.0" prefWidth="175.0" promptText="Nilai Kegaitan 3">
+                              <ComboBox fx:id="comboNamaKegiatan3" layoutX="10.0" layoutY="35.0" onAction="#comboTambahNamaKegiatan3" prefHeight="25.0" prefWidth="184.0" promptText="Nama Kegaitan 3">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiKegiatan4" layoutX="10.0" layoutY="60.0" onAction="#comboTambahNilaiKegiatan4" prefHeight="25.0" prefWidth="175.0" promptText="Nilai Kegiatan 4">
+                              <ComboBox fx:id="comboNamaKegiatan4" layoutX="10.0" layoutY="60.0" onAction="#comboTambahNamaKegiatan4" prefHeight="25.0" prefWidth="184.0" promptText="Nama Kegiatan 4">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiKegiatan5" layoutX="10.0" layoutY="85.0" onAction="#comboTambahNilaiKegiatan5" prefHeight="25.0" prefWidth="175.0" promptText="Nilai Kegiatan 5">
+                              <ComboBox fx:id="comboNamaKegiatan5" layoutX="10.0" layoutY="85.0" onAction="#comboTambahNamaKegiatan5" prefHeight="25.0" prefWidth="184.0" promptText="Nama Kegiatan 5">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <ComboBox fx:id="comboNilaiKegiatan6" layoutX="10.0" layoutY="110.0" onAction="#comboTambahNilaiKegiatan6" prefHeight="25.0" prefWidth="175.0" promptText="Nilai Kegiatan 6">
+                              <ComboBox fx:id="comboNamaKegiatan6" layoutX="10.0" layoutY="110.0" onAction="#comboTambahNamaKegiatan6" prefHeight="25.0" prefWidth="184.0" promptText="Nama Kegiatan 6">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ComboBox>
                            </children>
                         </VBox>
-                        <VBox layoutX="14.0" layoutY="50.0" prefHeight="220.0" prefWidth="150.0">
+                        <VBox layoutX="268.0" layoutY="69.0" prefHeight="370.0" prefWidth="175.0">
                            <children>
-                              <Label prefHeight="19.0" prefWidth="189.0" text="Pramuka">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
+                              <TextField fx:id="txNilaiKegiatanSiswa1" promptText="Nilai [A, B, C]" />
+                              <TextField fx:id="txNilaiKegiatanSiswa2" layoutX="10.0" layoutY="10.0" promptText="Nilai [A, B, C]">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="10.0" prefHeight="19.0" prefWidth="189.0" text="Drumband">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
+                              </TextField>
+                              <TextField fx:id="txNilaiKegiatanSiswa3" layoutX="10.0" layoutY="35.0" promptText="Nilai [A, B, C]">
                                  <VBox.margin>
-                                    <Insets top="11.0" />
+                                    <Insets top="5.0" />
                                  </VBox.margin>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="29.0" prefHeight="19.0" prefWidth="189.0" text="Paduan Suara">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
+                              </TextField>
+                              <TextField fx:id="txNilaiKegiatanSiswa4" layoutX="10.0" layoutY="60.0" promptText="Nilai [A, B, C]">
                                  <VBox.margin>
-                                    <Insets top="11.0" />
+                                    <Insets top="5.0" />
                                  </VBox.margin>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="189.0" text="Futsal">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
+                              </TextField>
+                              <TextField fx:id="txNilaiKegiatanSiswa5" layoutX="10.0" layoutY="85.0" promptText="Nilai [A, B, C]">
                                  <VBox.margin>
-                                    <Insets top="11.0" />
+                                    <Insets top="5.0" />
                                  </VBox.margin>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="67.0" prefHeight="19.0" prefWidth="189.0" text="Beatbox">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
+                              </TextField>
+                              <TextField fx:id="txNilaiKegiatanSiswa6" layoutX="10.0" layoutY="110.0" promptText="Nilai [A, B, C]">
                                  <VBox.margin>
-                                    <Insets top="11.0" />
+                                    <Insets top="5.0" />
                                  </VBox.margin>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="135.0" prefHeight="19.0" prefWidth="189.0" text="Taekwondo">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="11.0" />
-                                 </VBox.margin>
-                              </Label>
+                              </TextField>
                            </children>
                         </VBox>
                      </children></AnchorPane>
@@ -496,13 +359,13 @@
                         </VBox>
                         <VBox layoutX="177.0" layoutY="14.0" prefHeight="194.0" prefWidth="196.0">
                            <children>
-                              <TextField fx:id="txNilaiAbsenSakit" prefHeight="25.0" prefWidth="170.0" promptText="Nilai Angka" />
-                              <TextField fx:id="txNilaiAbsenIzin" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="170.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiAbsenSiswaSakit" prefHeight="25.0" prefWidth="170.0" promptText="Nilai Angka" />
+                              <TextField fx:id="txNilaiAbsenSiswaIzin" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="170.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txNilaiAbsenTp" layoutX="10.0" layoutY="35.0" prefHeight="25.0" prefWidth="170.0" promptText="Nilai Angka">
+                              <TextField fx:id="txNilaiAbsenSiswaTP" layoutX="10.0" layoutY="35.0" prefHeight="25.0" prefWidth="170.0" promptText="Nilai Angka">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>

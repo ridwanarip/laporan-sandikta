@@ -5,5 +5,5 @@ public enum NilaiKegiatan {
 	A,
 	B,
 	C,
-	NULL
+	KOSONG
 }
