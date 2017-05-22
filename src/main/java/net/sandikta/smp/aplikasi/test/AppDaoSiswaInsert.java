@@ -97,45 +97,45 @@ public class AppDaoSiswaInsert {
 	public static TahunPelajaran getTahunPelajaran1(Siswa siswa) {
 
 		NilaiSiswa nilai1 = new NilaiSiswa();
-		nilai1.setNama(MataPelajaran.BAHASA_INDONESIA);
-		nilai1.setKkm(MataPelajaran.BAHASA_INDONESIA);
+		nilai1.setNamaMatpel(MataPelajaran.Bahasa_Indonesia);
+		nilai1.setKkm(MataPelajaran.Bahasa_Indonesia);
 		nilai1.setNilaiAngka((double) 71.5);
 		nilai1.setNilaiHuruf((double) 71.5);
-		nilai1.setKeterangan(MataPelajaran.BAHASA_INDONESIA.getNilaiKkm());
+		nilai1.setKeterangan(MataPelajaran.Bahasa_Indonesia.getNilaiKkm());
 
 		NilaiSiswa nilai2 = new NilaiSiswa();
-		nilai2.setNama(MataPelajaran.ILMU_PENGETAHUAN_ALAM);
-		nilai2.setKkm(MataPelajaran.ILMU_PENGETAHUAN_ALAM);
+		nilai2.setNamaMatpel(MataPelajaran.Ilmu_Pengetahuan_Alam);
+		nilai2.setKkm(MataPelajaran.Ilmu_Pengetahuan_Alam);
 		nilai2.setNilaiAngka((double) 72);
 		nilai2.setNilaiHuruf((double) 72);
-		nilai2.setKeterangan(MataPelajaran.ILMU_PENGETAHUAN_ALAM.getNilaiKkm());
+		nilai2.setKeterangan(MataPelajaran.Ilmu_Pengetahuan_Alam.getNilaiKkm());
 
 		KegiatanSiswa kegiatan1 = new KegiatanSiswa();
 		KegiatanSiswa kegiatan2 = new KegiatanSiswa();
 		
-		kegiatan1.setNamaKegiatan(NamaKegiatan.PRAMUKA);
+		kegiatan1.setNamaKegiatan(NamaKegiatan.Pramuka);
 		kegiatan1.setNilaiKegiatan(NilaiKegiatan.B);
-		kegiatan2.setNamaKegiatan(NamaKegiatan.FUTSAL);
+		kegiatan2.setNamaKegiatan(NamaKegiatan.Futsal);
 		kegiatan2.setNilaiKegiatan(NilaiKegiatan.A);
 
 		AbsensiSiswa ijin = new AbsensiSiswa();
 		AbsensiSiswa sakit = new AbsensiSiswa();
 		AbsensiSiswa alpha = new AbsensiSiswa();
 		
-		ijin.setNamaAbsensi(NamaAbsensi.IZIN);
+		ijin.setNamaAbsensi(NamaAbsensi.Izin);
 		ijin.setJumlah(2);
-		sakit.setNamaAbsensi(NamaAbsensi.SAKIT);
+		sakit.setNamaAbsensi(NamaAbsensi.Sakit);
 		sakit.setJumlah(3);
-		alpha.setNamaAbsensi(NamaAbsensi.TANPA_KETERANGAN);
+		alpha.setNamaAbsensi(NamaAbsensi.Tanpa_Keterangan);
 		alpha.setJumlah(2);
 
 		BudiPekertiSiswa akhlak = new BudiPekertiSiswa();
 		BudiPekertiSiswa kepribadian = new BudiPekertiSiswa();
 
-		akhlak.setNamaBudiPekerti(NamaBudiPekerti.AKHLAK);
-		akhlak.setNilaiBudiPekerti(NilaiBudiPekerti.BAIK);
-		kepribadian.setNamaBudiPekerti(NamaBudiPekerti.KEPRIBADIAN);
-		kepribadian.setNilaiBudiPekerti(NilaiBudiPekerti.SANGAT_BAIK);
+		akhlak.setNamaBudiPekerti(NamaBudiPekerti.Akhlak);
+		akhlak.setNilaiBudiPekerti(NilaiBudiPekerti.Baik);
+		kepribadian.setNamaBudiPekerti(NamaBudiPekerti.Kepribadian);
+		kepribadian.setNilaiBudiPekerti(NilaiBudiPekerti.Sangat_Baik);
 
 		TahunPelajaran tahunPelajaran = new TahunPelajaran();
 		tahunPelajaran.setSiswa(siswa);
@@ -158,45 +158,45 @@ public class AppDaoSiswaInsert {
 	public static TahunPelajaran getTahunPelajaran2(Siswa siswa) {
 
 		NilaiSiswa nilai1 = new NilaiSiswa();
-		nilai1.setNama(MataPelajaran.BAHASA_INGGRIS);
-		nilai1.setKkm(MataPelajaran.BAHASA_INGGRIS);
+		nilai1.setNamaMatpel(MataPelajaran.Bahasa_Inggris);
+		nilai1.setKkm(MataPelajaran.Bahasa_Inggris);
 		nilai1.setNilaiAngka((double) 72);
 		nilai1.setNilaiHuruf((double) 72);
-		nilai1.setKeterangan(MataPelajaran.BAHASA_INGGRIS.getNilaiKkm());
+		nilai1.setKeterangan(MataPelajaran.Bahasa_Inggris.getNilaiKkm());
 
 		NilaiSiswa nilai2 = new NilaiSiswa();
-		nilai2.setNama(MataPelajaran.MATEMATIKA);
-		nilai2.setKkm(MataPelajaran.MATEMATIKA);
+		nilai2.setNamaMatpel(MataPelajaran.Matematika);
+		nilai2.setKkm(MataPelajaran.Matematika);
 		nilai2.setNilaiAngka((double) 73);
 		nilai2.setNilaiHuruf((double) 73);
-		nilai2.setKeterangan(MataPelajaran.MATEMATIKA.getNilaiKkm());
+		nilai2.setKeterangan(MataPelajaran.Matematika.getNilaiKkm());
 
 		KegiatanSiswa kegiatan1 = new KegiatanSiswa();
 		KegiatanSiswa kegiatan2 = new KegiatanSiswa();
 		
-		kegiatan1.setNamaKegiatan(NamaKegiatan.PRAMUKA);
+		kegiatan1.setNamaKegiatan(NamaKegiatan.Pramuka);
 		kegiatan1.setNilaiKegiatan(NilaiKegiatan.B);
-		kegiatan2.setNamaKegiatan(NamaKegiatan.DRUMBAND);
+		kegiatan2.setNamaKegiatan(NamaKegiatan.Drumband);
 		kegiatan2.setNilaiKegiatan(NilaiKegiatan.A);
 
 		AbsensiSiswa ijin = new AbsensiSiswa();
 		AbsensiSiswa sakit = new AbsensiSiswa();
 		AbsensiSiswa alpha = new AbsensiSiswa();
 		
-		ijin.setNamaAbsensi(NamaAbsensi.IZIN);
+		ijin.setNamaAbsensi(NamaAbsensi.Izin);
 		ijin.setJumlah(2);
-		sakit.setNamaAbsensi(NamaAbsensi.SAKIT);
+		sakit.setNamaAbsensi(NamaAbsensi.Sakit);
 		sakit.setJumlah(1);
-		alpha.setNamaAbsensi(NamaAbsensi.TANPA_KETERANGAN);
+		alpha.setNamaAbsensi(NamaAbsensi.Tanpa_Keterangan);
 		alpha.setJumlah(2);
 
 		BudiPekertiSiswa akhlak = new BudiPekertiSiswa();
 		BudiPekertiSiswa kepribadian = new BudiPekertiSiswa();
 
-		akhlak.setNamaBudiPekerti(NamaBudiPekerti.AKHLAK);
-		akhlak.setNilaiBudiPekerti(NilaiBudiPekerti.BAIK);
-		kepribadian.setNamaBudiPekerti(NamaBudiPekerti.KEPRIBADIAN);
-		kepribadian.setNilaiBudiPekerti(NilaiBudiPekerti.SANGAT_BAIK);
+		akhlak.setNamaBudiPekerti(NamaBudiPekerti.Akhlak);
+		akhlak.setNilaiBudiPekerti(NilaiBudiPekerti.Baik);
+		kepribadian.setNamaBudiPekerti(NamaBudiPekerti.Kepribadian);
+		kepribadian.setNilaiBudiPekerti(NilaiBudiPekerti.Sangat_Baik);
 
 		TahunPelajaran tahunPelajaran = new TahunPelajaran();
 		tahunPelajaran.setSiswa(siswa);

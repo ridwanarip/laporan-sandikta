@@ -35,6 +35,9 @@ public class TahunPelajaran {
 	@Column(name="TAHUN_PELAJARAN")
 	private String tahun;
 	
+	@Column(name="TOTAL_NILAI")
+	private Double totalNilai;
+	
 	@Column(name="Kelas")
 	@Enumerated(EnumType.STRING)
 	private Kelas kelas;
@@ -81,6 +84,14 @@ public class TahunPelajaran {
 
 	public void setTahun(String tahun) {
 		this.tahun = tahun;
+	}
+
+	public Double getTotalNilai() {
+		return totalNilai;
+	}
+
+	public void setTotalNilai(Double totalNilai) {
+		this.totalNilai = totalNilai;
 	}
 
 	public Kelas getKelas() {

@@ -23,13 +23,13 @@ public class TahunPelajaranDao implements Dao<TahunPelajaran, Long> {
 
 	@Override
 	public TahunPelajaran findByID(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		TahunPelajaran tahunPelajaran = (TahunPelajaran) session.
+				get(TahunPelajaran.class, id);
+		return tahunPelajaran;
 	}
 
 	@Override
 	public List<TahunPelajaran> findAll() {
-		
 		CriteriaQuery<TahunPelajaran> cq = session.getCriteriaBuilder().
 				createQuery(TahunPelajaran.class);
 		cq.from(TahunPelajaran.class);

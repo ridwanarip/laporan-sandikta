@@ -12,7 +12,6 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		try {
-			// BorderPane root = new BorderPane();
 			Parent root = FXMLLoader
 					.load(getClass().getResource("Menu.fxml"));
 			Scene scene = new Scene(root);

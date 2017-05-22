@@ -50,7 +50,7 @@ public class NilaiSiswa {
 		return namaMatpel;
 	}
 
-	public void setNama(MataPelajaran mataPelajaran) {
+	public void setNamaMatpel(MataPelajaran mataPelajaran) {
 		this.namaMatpel = mataPelajaran;
 	}
 

@@ -224,20 +224,14 @@ public class UpdateTahunPelajaranController implements Initializable {
 	ObservableList<String> listTahunSiswa = FXCollections.observableArrayList(
 			"2015/2016", "2016/2017", "2017/2018", "2018/2019", "2019/2020");
 	
-	ObservableList<MataPelajaran> listNamaMataPelajaran = FXCollections.observableArrayList(
-			MataPelajaran.PENDIDIKAN_AGAMA, MataPelajaran.PENDIDIKAN_KEWARGANEGARAAN, MataPelajaran.BAHASA_INDONESIA,
-			MataPelajaran.BAHASA_INGGRIS, MataPelajaran.MATEMATIKA,
-			MataPelajaran.ILMU_PENGETAHUAN_ALAM, MataPelajaran.ILMU_PENGETAHUAN_SOSIAL, 
-			MataPelajaran.SENI_BUDAYA, MataPelajaran.PENDIDIKAN_OLAHRAGA_dan_KESEHATAN,
-			MataPelajaran.TEKNOLOGI_INFORMASI_dan_KOMUNIKASI, MataPelajaran.BAHASA_dan_SASTRA_SUNDA,
-			MataPelajaran.PENDIDIKAN_LINGKUNGAN_HIDUP);
+	ObservableList<MataPelajaran> listNamaMataPelajaran = FXCollections.observableArrayList(MataPelajaran.values());
 	
 	ObservableList<NilaiKegiatan> listNialiKegiatan = FXCollections.observableArrayList(
 			NilaiKegiatan.A, NilaiKegiatan.B, NilaiKegiatan.C, NilaiKegiatan.KOSONG);
 	
 	ObservableList<NilaiBudiPekerti> listNilaiKepribadian = FXCollections.observableArrayList(
-			NilaiBudiPekerti.SANGAT_BAIK, NilaiBudiPekerti.BAIK, NilaiBudiPekerti.CUKUP_BAIK,
-			NilaiBudiPekerti.CUKUP);
+			NilaiBudiPekerti.Sangat_Baik, NilaiBudiPekerti.Baik, NilaiBudiPekerti.Cukup_Baik,
+			NilaiBudiPekerti.Cukup);
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -286,7 +280,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel1(ActionEvent event) {
-		nilaiSiswa1.setNama(comboNilaiMatpel1.getValue());
+		nilaiSiswa1.setNamaMatpel(comboNilaiMatpel1.getValue());
 		nilaiSiswa1.setKkm(comboNilaiMatpel1.getValue());
 		nilaiSiswa1.setNilaiAngka(Double.parseDouble(txNilaiPelajaran1.getText()));
 		nilaiSiswa1.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran1.getText()));
@@ -295,7 +289,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel2(ActionEvent event) {
-		nilaiSiswa2.setNama(comboNilaiMatpel2.getValue());
+		nilaiSiswa2.setNamaMatpel(comboNilaiMatpel2.getValue());
 		nilaiSiswa2.setKkm(comboNilaiMatpel2.getValue());
 		nilaiSiswa2.setNilaiAngka(Double.parseDouble(txNilaiPelajaran2.getText()));
 		nilaiSiswa2.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran2.getText()));
@@ -304,7 +298,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel3(ActionEvent event) {
-		nilaiSiswa3.setNama(comboNilaiMatpel3.getValue());
+		nilaiSiswa3.setNamaMatpel(comboNilaiMatpel3.getValue());
 		nilaiSiswa3.setKkm(comboNilaiMatpel3.getValue());
 		nilaiSiswa3.setNilaiAngka(Double.parseDouble(txNilaiPelajaran3.getText()));
 		nilaiSiswa3.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran3.getText()));
@@ -313,7 +307,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel4(ActionEvent event) {
-		nilaiSiswa4.setNama(comboNilaiMatpel4.getValue());
+		nilaiSiswa4.setNamaMatpel(comboNilaiMatpel4.getValue());
 		nilaiSiswa4.setKkm(comboNilaiMatpel4.getValue());
 		nilaiSiswa4.setNilaiAngka(Double.parseDouble(txNilaiPelajaran4.getText()));
 		nilaiSiswa4.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran4.getText()));
@@ -322,7 +316,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel5(ActionEvent event) {
-		nilaiSiswa5.setNama(comboNilaiMatpel5.getValue());
+		nilaiSiswa5.setNamaMatpel(comboNilaiMatpel5.getValue());
 		nilaiSiswa5.setKkm(comboNilaiMatpel5.getValue());
 		nilaiSiswa5.setNilaiAngka(Double.parseDouble(txNilaiPelajaran5.getText()));
 		nilaiSiswa5.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran5.getText()));
@@ -331,7 +325,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel6(ActionEvent event) {
-		nilaiSiswa6.setNama(comboNilaiMatpel6.getValue());
+		nilaiSiswa6.setNamaMatpel(comboNilaiMatpel6.getValue());
 		nilaiSiswa6.setKkm(comboNilaiMatpel6.getValue());
 		nilaiSiswa6.setNilaiAngka(Double.parseDouble(txNilaiPelajaran6.getText()));
 		nilaiSiswa6.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran6.getText()));
@@ -340,7 +334,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel7(ActionEvent event) {
-		nilaiSiswa7.setNama(comboNilaiMatpel7.getValue());
+		nilaiSiswa7.setNamaMatpel(comboNilaiMatpel7.getValue());
 		nilaiSiswa7.setKkm(comboNilaiMatpel7.getValue());
 		nilaiSiswa7.setNilaiAngka(Double.parseDouble(txNilaiPelajaran7.getText()));
 		nilaiSiswa7.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran7.getText()));
@@ -349,7 +343,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel8(ActionEvent event) {
-		nilaiSiswa8.setNama(comboNilaiMatpel8.getValue());
+		nilaiSiswa8.setNamaMatpel(comboNilaiMatpel8.getValue());
 		nilaiSiswa8.setKkm(comboNilaiMatpel8.getValue());
 		nilaiSiswa8.setNilaiAngka(Double.parseDouble(txNilaiPelajaran8.getText()));
 		nilaiSiswa8.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran8.getText()));
@@ -358,7 +352,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel9(ActionEvent event) {
-		nilaiSiswa9.setNama(comboNilaiMatpel9.getValue());
+		nilaiSiswa9.setNamaMatpel(comboNilaiMatpel9.getValue());
 		nilaiSiswa9.setKkm(comboNilaiMatpel9.getValue());
 		nilaiSiswa9.setNilaiAngka(Double.parseDouble(txNilaiPelajaran9.getText()));
 		nilaiSiswa9.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran9.getText()));
@@ -367,7 +361,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel10(ActionEvent event) {
-		nilaiSiswa10.setNama(comboNilaiMatpel10.getValue());
+		nilaiSiswa10.setNamaMatpel(comboNilaiMatpel10.getValue());
 		nilaiSiswa10.setKkm(comboNilaiMatpel10.getValue());
 		nilaiSiswa10.setNilaiAngka(Double.parseDouble(txNilaiPelajaran10.getText()));
 		nilaiSiswa10.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran10.getText()));
@@ -376,7 +370,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel11(ActionEvent event) {
-		nilaiSiswa11.setNama(comboNilaiMatpel11.getValue());
+		nilaiSiswa11.setNamaMatpel(comboNilaiMatpel11.getValue());
 		nilaiSiswa11.setKkm(comboNilaiMatpel11.getValue());
 		nilaiSiswa11.setNilaiAngka(Double.parseDouble(txNilaiPelajaran11.getText()));
 		nilaiSiswa11.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran11.getText()));
@@ -385,7 +379,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiMatpel12(ActionEvent event) {
-		nilaiSiswa12.setNama(comboNilaiMatpel12.getValue());
+		nilaiSiswa12.setNamaMatpel(comboNilaiMatpel12.getValue());
 		nilaiSiswa12.setKkm(comboNilaiMatpel12.getValue());
 		nilaiSiswa12.setNilaiAngka(Double.parseDouble(txNilaiPelajaran12.getText()));
 		nilaiSiswa12.setNilaiHuruf(Double.parseDouble(txNilaiPelajaran12.getText()));
@@ -394,49 +388,49 @@ public class UpdateTahunPelajaranController implements Initializable {
 	
 	@FXML
 	public void comboTambahNilaiKegiatan1(ActionEvent event) {
-		kegiatanSiswa1.setNamaKegiatan(NamaKegiatan.PRAMUKA);
+		kegiatanSiswa1.setNamaKegiatan(NamaKegiatan.Pramuka);
 		kegiatanSiswa1.setNilaiKegiatan(comboNilaiKegiatan1.getValue());
 	}
 	
 	@FXML
 	public void comboTambahNilaiKegiatan2(ActionEvent event) {
-		kegiatanSiswa2.setNamaKegiatan(NamaKegiatan.DRUMBAND);
+		kegiatanSiswa2.setNamaKegiatan(NamaKegiatan.Drumband);
 		kegiatanSiswa2.setNilaiKegiatan(comboNilaiKegiatan2.getValue());
 	}
 	
 	@FXML
 	public void comboTambahNilaiKegiatan3(ActionEvent event) {
-		kegiatanSiswa3.setNamaKegiatan(NamaKegiatan.PADUAN_SUARA);
+		kegiatanSiswa3.setNamaKegiatan(NamaKegiatan.Paduan_Suara);
 		kegiatanSiswa3.setNilaiKegiatan(comboNilaiKegiatan3.getValue());
 	}
 	
 	@FXML
 	public void comboTambahNilaiKegiatan4(ActionEvent event) {
-		kegiatanSiswa4.setNamaKegiatan(NamaKegiatan.FUTSAL);
+		kegiatanSiswa4.setNamaKegiatan(NamaKegiatan.Futsal);
 		kegiatanSiswa4.setNilaiKegiatan(comboNilaiKegiatan4.getValue());
 	}
 	
 	@FXML
 	public void comboTambahNilaiKegiatan5(ActionEvent event) {
-		kegiatanSiswa5.setNamaKegiatan(NamaKegiatan.BEATBOX);
+		kegiatanSiswa5.setNamaKegiatan(NamaKegiatan.Beatbox);
 		kegiatanSiswa5.setNilaiKegiatan(comboNilaiKegiatan5.getValue());
 	}
 	
 	@FXML
 	public void comboTambahNilaiKegiatan6(ActionEvent event) {
-		kegiatanSiswa6.setNamaKegiatan(NamaKegiatan.TAEKWONDO);
+		kegiatanSiswa6.setNamaKegiatan(NamaKegiatan.Taekwondo);
 		kegiatanSiswa6.setNilaiKegiatan(comboNilaiKegiatan6.getValue());
 	}
 	
 	@FXML
 	public void comboTambahNilaiKepribadian1(ActionEvent event) {
-		akhlak.setNamaBudiPekerti(NamaBudiPekerti.AKHLAK);
+		akhlak.setNamaBudiPekerti(NamaBudiPekerti.Akhlak);
 		akhlak.setNilaiBudiPekerti(comboNilaiKepribadian1.getValue());
 	}
 	
 	@FXML
 	public void comboTambahNilaiKepribadian2(ActionEvent event) {
-		kepribadian.setNamaBudiPekerti(NamaBudiPekerti.KEPRIBADIAN);
+		kepribadian.setNamaBudiPekerti(NamaBudiPekerti.Kepribadian);
 		kepribadian.setNilaiBudiPekerti(comboNilaiKepribadian2.getValue());
 	}
 	
@@ -472,11 +466,11 @@ public class UpdateTahunPelajaranController implements Initializable {
 		tahunPelajaran.getBudiPekerti().add(akhlak);
 		tahunPelajaran.getBudiPekerti().add(kepribadian);
 		
-		sakit.setNamaAbsensi(NamaAbsensi.SAKIT);
+		sakit.setNamaAbsensi(NamaAbsensi.Sakit);
 		sakit.setJumlah(Integer.parseInt(txNilaiAbsenSakit.getText()));
-		izin.setNamaAbsensi(NamaAbsensi.IZIN);
+		izin.setNamaAbsensi(NamaAbsensi.Izin);
 		izin.setJumlah(Integer.parseInt(txNilaiAbsenIzin.getText()));
-		tanpaKeterangan.setNamaAbsensi(NamaAbsensi.TANPA_KETERANGAN);
+		tanpaKeterangan.setNamaAbsensi(NamaAbsensi.Tanpa_Keterangan);
 		tanpaKeterangan.setJumlah(Integer.parseInt(txNilaiAbsenTp.getText()));
 		
 		tahunPelajaran.getAbsensi().add(sakit);

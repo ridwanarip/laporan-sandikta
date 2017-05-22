@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,17 +22,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
 import net.sandikta.smp.aplikasi.dao.TahunPelajaranDao;
 import net.sandikta.smp.aplikasi.dao.interfaces.Dao;
+import net.sandikta.smp.aplikasi.desktop.savesiswa.SaveSiswaPdf;
 import net.sandikta.smp.aplikasi.entities.Siswa;
 import net.sandikta.smp.aplikasi.entities.TahunPelajaran;
 
 public class SelectSiswaController implements Initializable {
 	
 	Siswa siswa = new Siswa();
+	
 	TahunPelajaran tahunPelajaran = new TahunPelajaran();
 	
 	private ObservableList<TahunPelajaran> tahunPelajaranObser = 
@@ -76,10 +80,6 @@ public class SelectSiswaController implements Initializable {
 						tahunPelajaran.getTahun());
 			}
 		}
-	}
-
-	public Siswa getSiswa() {
-		return siswa;
 	}
 
 	public void setSiswa(Siswa sis) {
@@ -140,9 +140,28 @@ public class SelectSiswaController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+
 	
 	@FXML
 	public void savePdfTahunPelajaranSiswa(ActionEvent event) {
+		
+		Stage primaryStage = new Stage();
+		
+		int selectTahunPelajaran = listTahunPelajaranSiswa.getSelectionModel().
+				getSelectedIndex();
+		TahunPelajaran tp = tahunPelajaranObser.get(selectTahunPelajaran);
+		tp.setSiswa(siswa);
+		
+		FileChooser fileChooser = new FileChooser();
+		FileChooser.ExtensionFilter exfilter = new FileChooser.
+				ExtensionFilter("TXT files (*.pdf)", "*.pdf");
+		fileChooser.getExtensionFilters().add(exfilter);
+		
+		File file = fileChooser.showSaveDialog(primaryStage);
+		
+		SaveSiswaPdf saveSiswa = new SaveSiswaPdf();
+		saveSiswa.setSiswa(tp);
+		saveSiswa.saveSiswa(file);
 	}
 	
 	@FXML

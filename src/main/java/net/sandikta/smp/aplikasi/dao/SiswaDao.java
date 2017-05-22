@@ -38,8 +38,8 @@ public class SiswaDao implements Dao<Siswa, Long> {
 	
 	@Override
 	public Siswa findByID(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Siswa siswa = (Siswa) session.get(Siswa.class, id);
+		return siswa;
 	}
 
 	@Override

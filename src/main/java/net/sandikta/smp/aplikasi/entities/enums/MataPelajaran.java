@@ -2,18 +2,18 @@ package net.sandikta.smp.aplikasi.entities.enums;
 
 public enum MataPelajaran {
 
-	PENDIDIKAN_AGAMA (74),
-	PENDIDIKAN_KEWARGANEGARAAN (73),
-	BAHASA_INDONESIA (72),
-	BAHASA_INGGRIS (71),
-	MATEMATIKA (72),
-	ILMU_PENGETAHUAN_ALAM (71),
-	ILMU_PENGETAHUAN_SOSIAL (73),
-	SENI_BUDAYA (75),
-	PENDIDIKAN_OLAHRAGA_dan_KESEHATAN (73),
-	TEKNOLOGI_INFORMASI_dan_KOMUNIKASI (72),
-	BAHASA_dan_SASTRA_SUNDA (72),
-	PENDIDIKAN_LINGKUNGAN_HIDUP (81);
+	Pendidikan_Agama (74),
+	Pendidikan_Kewarganegaraan (73),
+	Bahasa_Indonesia (72),
+	Bahasa_Inggris (71),
+	Matematika (72),
+	Ilmu_Pengetahuan_Alam (71),
+	Ilmu_Pengetahuan_Sosial (73),
+	Seni_Budaya (75),
+	Pendidikan_Olahraga_dan_Kesehatan (73),
+	Teknologi_Informasi_dan_Komunikasi (72),
+	Bahasa_dan_Sastra_Sunda (72),
+	Pendidikan_Lingkungan_Hidup (81);
 	
 	private final int kkm;
 	
