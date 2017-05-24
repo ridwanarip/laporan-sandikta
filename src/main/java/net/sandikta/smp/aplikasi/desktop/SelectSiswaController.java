@@ -154,7 +154,7 @@ public class SelectSiswaController implements Initializable {
 		
 		FileChooser fileChooser = new FileChooser();
 		FileChooser.ExtensionFilter exfilter = new FileChooser.
-				ExtensionFilter("TXT files (*.pdf)", "*.pdf");
+				ExtensionFilter("Pdf files (*.pdf)", "*.pdf");
 		fileChooser.getExtensionFilters().add(exfilter);
 		
 		File file = fileChooser.showSaveDialog(primaryStage);

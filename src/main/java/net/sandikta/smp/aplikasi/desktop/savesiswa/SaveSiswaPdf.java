@@ -2,6 +2,8 @@ package net.sandikta.smp.aplikasi.desktop.savesiswa;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -110,7 +112,7 @@ public class SaveSiswaPdf {
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(file));
 			
-			PdfPCell cell1, cell2, cell3, cell4, cell5;
+			PdfPCell cell1, cell2, cell3, cell4, cell5, cell6;
 			
 			document.open();
 			Image logo = Image.getInstance(getClass().getResource(logoSandikta));
@@ -297,7 +299,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai1.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai1.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -321,7 +323,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai2.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai2.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -345,7 +347,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai3.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai3.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -369,7 +371,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai4.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai4.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -393,7 +395,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai5.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai5.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -417,7 +419,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai6.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai6.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -441,7 +443,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai7.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai7.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -465,7 +467,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai8.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai8.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -489,7 +491,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai9.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai9.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -542,7 +544,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai10.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai10.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -582,7 +584,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai11.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai11.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -602,7 +604,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
-			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai12.getNilaiAngka()), 
+			cell3 = new PdfPCell(new Phrase(String.valueOf(nilai12.getNilaiAngka()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table3.addCell(cell3);
@@ -660,7 +662,7 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			table4.addCell(cell4);
 			
-			cell4 = new PdfPCell(new Phrase(String.valueOf(tahunPelajaran.getTotalNilai()), 
+			cell4 = new PdfPCell(new Phrase(String.valueOf(tahunPelajaran.getTotalNilai()).replace(".0", ""), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table4.addCell(cell4);
@@ -790,11 +792,11 @@ public class SaveSiswaPdf {
 			table5.addCell(cell5);
 			
 			// Row 1
-			cell5 = new PdfPCell(new Phrase(akhlak.getNamaBudiPekerti().toString(), 
+			cell5 = new PdfPCell(new Phrase(String.valueOf(akhlak.getNamaBudiPekerti()).replace("_", " "), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			table5.addCell(cell5);
 			
-			cell5 = new PdfPCell(new Phrase(akhlak.getNilaiBudiPekerti().toString(), 
+			cell5 = new PdfPCell(new Phrase(String.valueOf(akhlak.getNilaiBudiPekerti()).replace("_", " "), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			table5.addCell(cell5);
 			
@@ -807,11 +809,11 @@ public class SaveSiswaPdf {
 			table5.addCell(cell5);
 			
 			// Row 2
-			cell5 = new PdfPCell(new Phrase(kepribadian.getNamaBudiPekerti().toString(), 
+			cell5 = new PdfPCell(new Phrase(String.valueOf(kepribadian.getNamaBudiPekerti()).replace("_", " "), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			table5.addCell(cell5);
 			
-			cell5 = new PdfPCell(new Phrase(kepribadian.getNilaiBudiPekerti().toString(), 
+			cell5 = new PdfPCell(new Phrase(String.valueOf(kepribadian.getNilaiBudiPekerti()).replace("_", " "), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			table5.addCell(cell5);
 			
@@ -830,7 +832,7 @@ public class SaveSiswaPdf {
 			cell5 = new PdfPCell(new Phrase(" "));
 			table5.addCell(cell5);
 			
-			cell5 = new PdfPCell(new Phrase(tanpaKeterangan.getNamaAbsensi().toString(), 
+			cell5 = new PdfPCell(new Phrase(String.valueOf(tanpaKeterangan.getNamaAbsensi()).replace("_", " "), 
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			table5.addCell(cell5);
 			
@@ -838,12 +840,101 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			table5.addCell(cell5);
 			
+			PdfPTable table6 = new PdfPTable(3);
+			table6.setWidthPercentage(100);
+			table6.setWidths(new int[] {4, 2, 4});
+			table6.setSpacingBefore(10);
+			
+			// Row 1
+			cell6 = new PdfPCell(new Phrase("Mengetahui, ", FontFactory.
+					getFont(FontFactory.defaultEncoding, 10)));
+			cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			
+			
+			cell6 = new PdfPCell(new Phrase("Bekasi, " + String.valueOf(new SimpleDateFormat("dd/MM/yyyy").format(new Date())), 
+					FontFactory.
+					getFont(FontFactory.defaultEncoding, 10)));
+			cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			// Row 2
+			cell6 = new PdfPCell(new Phrase("Orang Tua / Wali Murid", FontFactory.
+					getFont(FontFactory.defaultEncoding, 10)));
+			cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			cell6 = new PdfPCell(new Phrase("Wali Kelas, ", FontFactory.
+					getFont(FontFactory.defaultEncoding, 10)));
+			cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			// Row 3
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			// Row 4
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			// Row 5
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
+			// Row 6
+			cell6 = new PdfPCell(new Phrase("------------------------------"));
+			cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			cell6 = new PdfPCell(new Phrase(" "));
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			cell6 = new PdfPCell(new Phrase("------------------------------"));
+			cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell6.setBorder(Rectangle.NO_BORDER);
+			table6.addCell(cell6);
+			
 			document.add(table1);
 			document.add(line);
 			document.add(table2);
 			document.add(table3);
 			document.add(table4);
 			document.add(table5);
+			document.add(table6);
 			document.close();
 			
 		} catch (Exception e) {
