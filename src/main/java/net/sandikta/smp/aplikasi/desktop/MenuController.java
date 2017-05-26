@@ -14,7 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,11 +27,9 @@ import net.sandikta.smp.aplikasi.dao.HibernateUtil;
 import net.sandikta.smp.aplikasi.dao.SiswaDao;
 import net.sandikta.smp.aplikasi.dao.interfaces.Dao;
 import net.sandikta.smp.aplikasi.entities.Siswa;
-import net.sandikta.smp.aplikasi.entities.UserAccount;
 
 public class MenuController implements Initializable {
  
-	private UserAccount userAccount;
 	private ObservableList<Siswa> siswaObser =
 			FXCollections.observableArrayList();
 	
@@ -41,17 +38,17 @@ public class MenuController implements Initializable {
 	@FXML
 	private ListView<Siswa> listSiswa;
 	@FXML
-	private TextField txNoInduk;
+	private TextField txCariSiswa;
 	@FXML
-	private Button btnSignOut;
+	private Button btnCariSiswa;
 	@FXML
 	private Button btnRefreshSiswa;
 	@FXML
-	private Button btnSelectSiswa;
-	@FXML
 	private Button btnInsertSiswa;
 	@FXML
-	private Button btnCariSiswa;
+	private Button btnSelectKelas;
+	@FXML
+	private Button btnSelectSiswa;
 	@FXML
 	private Button btnDeleteSiswa;
 	
@@ -78,37 +75,31 @@ public class MenuController implements Initializable {
 		}
 	}
 	
-	public void setUser(UserAccount user) {
-		this.userAccount = user;
-		this.lblUser.setText("Welcome " + userAccount.getGuru().getNik()
-				+ " " + userAccount.getGuru().getNama());
-	}
-
-	@FXML
-	public void signOut(ActionEvent event) {
-		try {
-			((Node) event.getSource()).getScene().getWindow().hide();
-			Stage primaryStage = new Stage();
-			FXMLLoader loader = new FXMLLoader();
-			
-			Pane root = loader.load(getClass()
-					.getResource("Login.fxml").openStream());
-			
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass()
-					.getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@FXML
+//	public void signOut(ActionEvent event) {
+//		try {
+//			((Node) event.getSource()).getScene().getWindow().hide();
+//			Stage primaryStage = new Stage();
+//			FXMLLoader loader = new FXMLLoader();
+//			
+//			Pane root = loader.load(getClass()
+//					.getResource("Login.fxml").openStream());
+//			
+//			Scene scene = new Scene(root);
+//			scene.getStylesheets().add(getClass()
+//					.getResource("application.css").toExternalForm());
+//			primaryStage.setScene(scene);
+//			primaryStage.show();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	@FXML
 	public void cariSiswa(ActionEvent event) {
 		Siswa siswa = new Siswa();
 		for (Siswa s : siswaObser) {
-			if (s.getNoInduk().equalsIgnoreCase(txNoInduk.getText())) {
+			if (s.getNoInduk().equalsIgnoreCase(txCariSiswa.getText())) {
 				System.out.println("\nNama: " + s.getNama());
 				siswa = s;
 			}
@@ -142,6 +133,11 @@ public class MenuController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@FXML
+	public void selectKelas(ActionEvent event) {
+		
 	}
 	
 	@FXML

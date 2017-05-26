@@ -1,4 +1,4 @@
-package net.sandikta.smp.aplikasi.test;
+package net.sandikta.smp.aplikasi.console;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

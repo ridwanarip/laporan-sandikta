@@ -5,6 +5,16 @@
   ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
   ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
   -->
+  
+<!--
+  		<property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/sandiktadb</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
+        
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/sandiktadb</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+  -->
 
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
@@ -15,9 +25,9 @@
     <session-factory>
 
         <!-- Database connection settings -->
-        <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/sandiktadb</property>
-        <property name="connection.username">postgres</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/sandiktadb</property>
+        <property name="connection.username">mandor</property>
         <property name="connection.password">lontongbalap</property>
 
 
@@ -25,7 +35,7 @@
         <property name="connection.pool_size">1</property>
 
         <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>

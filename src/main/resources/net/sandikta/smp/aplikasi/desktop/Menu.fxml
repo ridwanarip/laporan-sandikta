@@ -5,24 +5,35 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.MenuController">
    <children>
-      <Label fx:id="lblUser" alignment="CENTER" layoutX="174.0" layoutY="22.0" prefHeight="19.0" prefWidth="233.0" text="Welcome">
+      <Label fx:id="lblUser" alignment="CENTER" layoutX="48.0" layoutY="22.0" prefHeight="25.0" prefWidth="379.0" text="Aplikasi Nilai Raport SMP Sandikata">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
       <ListView fx:id="listSiswa" layoutX="15.0" layoutY="126.0" prefHeight="206.0" prefWidth="412.0" />
-      <Button fx:id="btnSignOut" layoutX="517.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOut" text="Sign Out" />
-      <Button fx:id="btnRefreshSiswa" layoutX="291.0" layoutY="82.0" mnemonicParsing="false" onAction="#refreshSiswa" prefHeight="25.0" prefWidth="124.0" text="Refresh Siswa" />
-      <Button fx:id="btnSelectSiswa" layoutX="462.0" layoutY="200.0" mnemonicParsing="false" onAction="#selectSiswa" prefHeight="25.0" prefWidth="124.0" text="Select Siswa" />
-      <Button fx:id="btnInsertSiswa" layoutX="462.0" layoutY="143.0" mnemonicParsing="false" onAction="#insertSiswa" prefHeight="25.0" prefWidth="124.0" text="Insert Siswa" />
-      <TextField fx:id="txNoInduk" layoutX="14.0" layoutY="82.0" promptText="Cari No Induk" />
-      <Button fx:id="btnCariSiswa" layoutX="187.0" layoutY="82.0" mnemonicParsing="false" onAction="#cariSiswa" text="Cari" />
-      <Button fx:id="btnDeleteSiswa" layoutX="462.0" layoutY="259.0" mnemonicParsing="false" onAction="#deleteSiswa" prefHeight="25.0" prefWidth="124.0" text="Delete Siswa" />
+      <Button fx:id="btnRefreshSiswa" layoutX="238.0" layoutY="82.0" mnemonicParsing="false" onAction="#refreshSiswa" prefHeight="25.0" prefWidth="124.0" text="Refresh Siswa" />
+      <Button fx:id="btnSelectKelas" layoutX="455.0" layoutY="200.0" mnemonicParsing="false" onAction="#selectKelas" prefHeight="25.0" prefWidth="124.0" text="Select Kelas" />
+      <TextField fx:id="txCariSiswa" layoutX="14.0" layoutY="82.0" promptText="Cari Siswa" />
+      <Button fx:id="btnCariSiswa" layoutX="174.0" layoutY="82.0" mnemonicParsing="false" onAction="#cariSiswa" text="Cari" />
+      <Button fx:id="btnSelectSiswa" layoutX="455.0" layoutY="246.0" mnemonicParsing="false" onAction="#selectSiswa" prefHeight="25.0" prefWidth="124.0" text="Select Siswa" />
+      <AnchorPane id="apLogo" layoutX="462.0" layoutY="14.0" prefHeight="110.0" prefWidth="110.0">
+         <children>
+            <ImageView fitHeight="110.0" fitWidth="110.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../images/logo_sandikta.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnDeleteSiswa" layoutX="455.0" layoutY="295.0" mnemonicParsing="false" onAction="#deleteSiswa" prefHeight="25.0" prefWidth="124.0" text="Delete Siswa" />
+      <Button fx:id="btnInsertSiswa" layoutX="455.0" layoutY="152.0" mnemonicParsing="false" onAction="#insertSiswa" prefHeight="25.0" prefWidth="124.0" text="Insert Siswa" />
    </children>
    <opaqueInsets>
       <Insets />
