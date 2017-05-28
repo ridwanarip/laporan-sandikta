@@ -1,4 +1,4 @@
-package net.sandikta.smp.aplikasi.desktop;
+package net.sandikta.smp.aplikasi.desktop.select.siswa;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ComboBox;
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
-import net.sandikta.smp.aplikasi.dao.SiswaDao;
+import net.sandikta.smp.aplikasi.dao.TahunPelajaranDao;
 import net.sandikta.smp.aplikasi.dao.interfaces.Dao;
 import net.sandikta.smp.aplikasi.entities.AbsensiSiswa;
 import net.sandikta.smp.aplikasi.entities.BudiPekertiSiswa;
@@ -38,9 +38,10 @@ import net.sandikta.smp.aplikasi.entities.enums.NilaiBudiPekerti;
 import net.sandikta.smp.aplikasi.entities.enums.NilaiKegiatan;
 import net.sandikta.smp.aplikasi.entities.enums.Semester;
 
-public class InsertSiswaController implements Initializable {
+public class InsertTahunPelajaranController implements Initializable {
 	
 	private Siswa siswa = new Siswa();
+	private TahunPelajaran tahunPelajaran = new TahunPelajaran();
 	private Kelas kelasSiswa;
 	private Semester semesterSiswa;
 	private String tahunPelajaranSiswa;
@@ -72,16 +73,26 @@ public class InsertSiswaController implements Initializable {
 	private AbsensiSiswa izin = new AbsensiSiswa();
 	private AbsensiSiswa tanpaKeterangan = new AbsensiSiswa();
 	
+	public Siswa getSiswa() {
+		return siswa;
+	}
+	public void setSiswa(Siswa siswa) {
+		this.siswa = siswa;
+		lblNamaSiswa.setText(siswa.getNama());
+		lblNoIndukSiswa.setText(siswa.getNoInduk());
+		lblAlamatSiswa.setText(siswa.getAlamat());
+	}
+	
 	@FXML
 	private Label lblTambahDataSiswa;
 	@FXML
 	private TabPane tabPaneSiswa;
 	@FXML
-	private TextField txNamaSiswa;
+	private Label lblNamaSiswa;
 	@FXML
-	private TextField txNomorInduk;
+	private Label lblNoIndukSiswa;
 	@FXML
-	private TextField txAlamatSiswa;
+	private Label lblAlamatSiswa;
 	@FXML
 	private ComboBox<Kelas> comboKelasSiswa;
 	@FXML
@@ -95,30 +106,6 @@ public class InsertSiswaController implements Initializable {
 	private Label lblNilaiMataPelajaran;
 	@FXML
 	private Label lblNamaMataPelajaran;
-	@FXML
-	private TextField txNilaiPelajaran1;
-	@FXML
-	private TextField txNilaiPelajaran2;
-	@FXML
-	private TextField txNilaiPelajaran3;
-	@FXML
-	private TextField txNilaiPelajaran4;
-	@FXML
-	private TextField txNilaiPelajaran5;
-	@FXML
-	private TextField txNilaiPelajaran6;
-	@FXML
-	private TextField txNilaiPelajaran7;
-	@FXML
-	private TextField txNilaiPelajaran8;
-	@FXML
-	private TextField txNilaiPelajaran9;
-	@FXML
-	private TextField txNilaiPelajaran10;
-	@FXML
-	private TextField txNilaiPelajaran11;
-	@FXML
-	private TextField txNilaiPelajaran12;
 	@FXML
 	private ComboBox<MataPelajaran> comboNilaiMatpel1;
 	@FXML
@@ -143,6 +130,30 @@ public class InsertSiswaController implements Initializable {
 	private ComboBox<MataPelajaran> comboNilaiMatpel11;
 	@FXML
 	private ComboBox<MataPelajaran> comboNilaiMatpel12;
+	@FXML
+	private TextField txNilaiPelajaran1;
+	@FXML
+	private TextField txNilaiPelajaran2;
+	@FXML
+	private TextField txNilaiPelajaran3;
+	@FXML
+	private TextField txNilaiPelajaran4;
+	@FXML
+	private TextField txNilaiPelajaran5;
+	@FXML
+	private TextField txNilaiPelajaran6;
+	@FXML
+	private TextField txNilaiPelajaran7;
+	@FXML
+	private TextField txNilaiPelajaran8;
+	@FXML
+	private TextField txNilaiPelajaran9;
+	@FXML
+	private TextField txNilaiPelajaran10;
+	@FXML
+	private TextField txNilaiPelajaran11;
+	@FXML
+	private TextField txNilaiPelajaran12;
 	
 	@FXML
 	private Label lblNamaKegiatan;
@@ -176,18 +187,21 @@ public class InsertSiswaController implements Initializable {
 	@FXML
 	private Button btnTambahData;
 	
-	ObservableList<Kelas> listKelas = FXCollections.observableArrayList(Kelas.values());
+	private ObservableList<Kelas> listKelas = FXCollections.observableArrayList(Kelas.values());
 	
-	ObservableList<Semester> listSemester = FXCollections.observableArrayList(Semester.values());
+	private ObservableList<Semester> listSemester = FXCollections.observableArrayList(Semester.values());
 	
-	ObservableList<String> listTahunSiswa = FXCollections.observableArrayList(
+	private ObservableList<String> listTahunSiswa = FXCollections.observableArrayList(
 			"2015/2016", "2016/2017", "2017/2018", "2018/2019", "2019/2020");
 	
-	ObservableList<MataPelajaran> listNamaMataPelajaran = FXCollections.observableArrayList(MataPelajaran.values());
+	private ObservableList<MataPelajaran> listNamaMataPelajaran = 
+			FXCollections.observableArrayList(MataPelajaran.values());
 	
-	ObservableList<NilaiKegiatan> listNialiKegiatan = FXCollections.observableArrayList(NilaiKegiatan.values());
+	private ObservableList<NilaiKegiatan> listNialiKegiatan = 
+			FXCollections.observableArrayList(NilaiKegiatan.values());
 	
-	ObservableList<NilaiBudiPekerti> listNilaiKepribadian = FXCollections.observableArrayList(NilaiBudiPekerti.values());
+	private ObservableList<NilaiBudiPekerti> listNilaiKepribadian = 
+			FXCollections.observableArrayList(NilaiBudiPekerti.values());
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -377,7 +391,7 @@ public class InsertSiswaController implements Initializable {
 		kegiatanSiswa6.setNamaKegiatan(NamaKegiatan.Taekwondo);
 		kegiatanSiswa6.setNilaiKegiatan(comboNilaiKegiatan6.getValue());
 	}
-
+	
 	@FXML
 	public void comboTambahNilaiKepribadian1(ActionEvent event) {
 		akhlak.setNamaBudiPekerti(NamaBudiPekerti.Akhlak);
@@ -390,7 +404,7 @@ public class InsertSiswaController implements Initializable {
 		kepribadian.setNilaiBudiPekerti(comboNilaiKepribadian2.getValue());
 	}
 	
-	private TahunPelajaran getTahunPelajaran(Siswa siswa) {
+	private TahunPelajaran getTahunPelajaran() {
 		
 		TahunPelajaran tahunPelajaran = new TahunPelajaran();
 		tahunPelajaran.setSiswa(siswa);
@@ -455,32 +469,22 @@ public class InsertSiswaController implements Initializable {
 		
 		return tahunPelajaran;
 	}
-	
-	private Siswa getSiswa() {
-		Siswa siswa = new Siswa();
-		siswa.setNama(txNamaSiswa.getText());
-		siswa.setNoInduk(txNomorInduk.getText());
-		siswa.setAlamat(txAlamatSiswa.getText());
-		return siswa;
-	}
 
 	@FXML
 	public void saveSiswa(ActionEvent event) {
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		Transaction transaction = null;
-		
 		try {
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<Siswa, Long> daoSiswa = new SiswaDao();
-			daoSiswa.setSession(session);
+			Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
+			daoTahunPelajaran.setSession(session);
 			
-			siswa = getSiswa();
-			siswa.getTahunPelajaran().add(getTahunPelajaran(siswa));
+			tahunPelajaran = getTahunPelajaran();
 			
 			transaction = session.beginTransaction();
-			daoSiswa.save(siswa);
+			daoTahunPelajaran.save(tahunPelajaran);
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

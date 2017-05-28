@@ -38,7 +38,7 @@ public class TahunPelajaran {
 	@Column(name="TOTAL_NILAI")
 	private Double totalNilai;
 	
-	@Column(name="Kelas")
+	@Column(name="KELAS")
 	@Enumerated(EnumType.STRING)
 	private Kelas kelas;
 	

@@ -1,4 +1,4 @@
-package net.sandikta.smp.aplikasi.desktop;
+package net.sandikta.smp.aplikasi.desktop.select.siswa;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 
 import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.hibernate.Session;
@@ -28,21 +29,18 @@ import javafx.util.Callback;
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
 import net.sandikta.smp.aplikasi.dao.TahunPelajaranDao;
 import net.sandikta.smp.aplikasi.dao.interfaces.Dao;
-import net.sandikta.smp.aplikasi.desktop.savesiswa.SaveSiswaPdf;
 import net.sandikta.smp.aplikasi.entities.Siswa;
 import net.sandikta.smp.aplikasi.entities.TahunPelajaran;
+import net.sandikta.smp.aplikasi.export.SaveSiswaPdf;
 
 public class SelectSiswaController implements Initializable {
 	
-	Siswa siswa = new Siswa();
-	
-	TahunPelajaran tahunPelajaran = new TahunPelajaran();
-	
+	private Siswa siswa = new Siswa();
 	private ObservableList<TahunPelajaran> tahunPelajaranObser = 
 			FXCollections.observableArrayList();;
 	
 	@FXML
-	private Label lblTahunPelajaranSiswa;
+	private Label lblSelectSiswa;
 	@FXML
 	private ListView<TahunPelajaran> listTahunPelajaranSiswa;
 	@FXML
@@ -52,7 +50,7 @@ public class SelectSiswaController implements Initializable {
 	@FXML
 	private Button btnSaveTahunPelajaranSiswa;
 	@FXML
-	private Button btnHapusTahuPelajaranSiswa;
+	private Button btnDeleteTahuPelajaranSiswa;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -61,21 +59,18 @@ public class SelectSiswaController implements Initializable {
 				ListCell<TahunPelajaran>>() {
 			@Override
 			public ListCell<TahunPelajaran> call(ListView<TahunPelajaran> param) {
-				return new TahunPelajaranListViewCell(siswa);
+				return new TahunPelajaranListViewCell();
 			}
 		});
 	}
 	
 	static class TahunPelajaranListViewCell extends ListCell<TahunPelajaran> {
-		private Siswa siswa;
-		public TahunPelajaranListViewCell(Siswa sis) {
-			siswa = sis;
-		}
 		@Override
 		protected void updateItem(TahunPelajaran tahunPelajaran, boolean empty) {
 			super.updateItem(tahunPelajaran, empty);
 			if (tahunPelajaran != null) {
-				setText(siswa.getNama() + "\t\t" +tahunPelajaran.getKelas() + "\t\t" + 
+				setText(tahunPelajaran.getSiswa().getNama() + "\t\t" +
+						tahunPelajaran.getKelas() + "\t\t" + 
 						tahunPelajaran.getSemester() + "\t\t" + 
 						tahunPelajaran.getTahun());
 			}
@@ -84,8 +79,28 @@ public class SelectSiswaController implements Initializable {
 
 	public void setSiswa(Siswa sis) {
 		this.siswa = sis;
-		this.tahunPelajaran.setSiswa(siswa);
-		this.tahunPelajaranObser.addAll(siswa.getTahunPelajaran());
+		this.tahunPelajaranObser.addAll(getAllTahunPelajaranId(sis.getIdSiswa()));
+		this.lblSelectSiswa.setText("Data " + siswa.getNama());
+	}
+	
+	private List<TahunPelajaran> getAllTahunPelajaranId(Long idSiswa) {
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		try {
+			sessionFactory = HibernateUtil.getSessionFactory();
+			session = sessionFactory.openSession();
+			Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
+			daoTahunPelajaran.setSession(session);
+			
+			List<TahunPelajaran> tahunPelajaran = ((TahunPelajaranDao) 
+					daoTahunPelajaran).findAllById(idSiswa);
+			return tahunPelajaran;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			session.close();
+		}
 	}
 	
 	@FXML
@@ -103,8 +118,6 @@ public class SelectSiswaController implements Initializable {
 			insertTahunPelajar.setSiswa(siswa);
 			
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass()
-					.getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -144,36 +157,28 @@ public class SelectSiswaController implements Initializable {
 	
 	@FXML
 	public void savePdfTahunPelajaranSiswa(ActionEvent event) {
-		
 		Stage primaryStage = new Stage();
-		
 		int selectTahunPelajaran = listTahunPelajaranSiswa.getSelectionModel().
 				getSelectedIndex();
 		TahunPelajaran tp = tahunPelajaranObser.get(selectTahunPelajaran);
-		tp.setSiswa(siswa);
 		
 		FileChooser fileChooser = new FileChooser();
 		FileChooser.ExtensionFilter exfilter = new FileChooser.
 				ExtensionFilter("Pdf files (*.pdf)", "*.pdf");
 		fileChooser.getExtensionFilters().add(exfilter);
-		
 		File file = fileChooser.showSaveDialog(primaryStage);
 		
-		SaveSiswaPdf saveSiswa = new SaveSiswaPdf();
-		saveSiswa.setSiswa(tp);
-		saveSiswa.saveSiswa(file);
+		SaveSiswaPdf.saveSiswa(file, tp);
 	}
 	
 	@FXML
-	public void hapusTahunPelajaranSiswa(ActionEvent event) {
+	public void deleteTahunPelajaranSiswa(ActionEvent event) {
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		Transaction transaction = null;
-		
 		try {
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			
 			Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
 			daoTahunPelajaran.setSession(session);
 			

@@ -1,13 +1,15 @@
-package net.sandikta.smp.aplikasi.desktop.savesiswa;
+package net.sandikta.smp.aplikasi.export;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -29,43 +31,14 @@ import net.sandikta.smp.aplikasi.entities.AbsensiSiswa;
 import net.sandikta.smp.aplikasi.entities.BudiPekertiSiswa;
 import net.sandikta.smp.aplikasi.entities.KegiatanSiswa;
 import net.sandikta.smp.aplikasi.entities.NilaiSiswa;
-import net.sandikta.smp.aplikasi.entities.Siswa;
 import net.sandikta.smp.aplikasi.entities.TahunPelajaran;
 import net.sandikta.smp.aplikasi.entities.enums.NilaiKegiatan;
 
 public class SaveSiswaPdf {
 
-	Siswa siswa = new Siswa();
-	TahunPelajaran tahunPelajaran = new TahunPelajaran();
+	private final static String LOGO_SANDIKTA = "/images/logo_sandikta.png";
 	
-	SessionFactory sessionFactory = null;
-	Session session = null;
-	Transaction transaction = null;
-	
-	public void setSiswa(TahunPelajaran tp) {
-		this.tahunPelajaran = tp;
-	}
-	
-	public TahunPelajaran getTahunPelajaran(Long id) {
-		try {
-			sessionFactory = HibernateUtil.getSessionFactory();
-			session = sessionFactory.openSession();
-			
-			Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
-			daoTahunPelajaran.setSession(session);
-			
-			transaction = session.beginTransaction();
-			TahunPelajaran tp = daoTahunPelajaran.findByID(id);
-			transaction.commit();
-			return tp;
-		} catch (Exception e) {
-			e.printStackTrace();
-			transaction.rollback();
-			return null;
-		} 
-	}
-	
-	private String checkKosong(KegiatanSiswa kegiatan) {
+	private static String checkKosong(KegiatanSiswa kegiatan) {
 		if (kegiatan.getNilaiKegiatan() == NilaiKegiatan.KOSONG) {
 			return "-";
 		} else {
@@ -73,49 +46,65 @@ public class SaveSiswaPdf {
 		}
 	}
 	
-	public void saveSiswa(File file) {
-		
-		String logoSandikta = "/images/logo_sandikta.png";
-		
-		TahunPelajaran tp = getTahunPelajaran(tahunPelajaran.
-				getIdTahunPelajaran());
-		siswa = tp.getSiswa();
-		
-		NilaiSiswa nilai1 = tp.getNilaiMatpel().get(0);
-		NilaiSiswa nilai2 = tp.getNilaiMatpel().get(1);
-		NilaiSiswa nilai3 = tp.getNilaiMatpel().get(2);
-		NilaiSiswa nilai4 = tp.getNilaiMatpel().get(3);
-		NilaiSiswa nilai5 = tp.getNilaiMatpel().get(4);
-		NilaiSiswa nilai6 = tp.getNilaiMatpel().get(5);
-		NilaiSiswa nilai7 = tp.getNilaiMatpel().get(6);
-		NilaiSiswa nilai8 = tp.getNilaiMatpel().get(7);
-		NilaiSiswa nilai9 = tp.getNilaiMatpel().get(8);
-		NilaiSiswa nilai10 = tp.getNilaiMatpel().get(9);
-		NilaiSiswa nilai11 = tp.getNilaiMatpel().get(10);
-		NilaiSiswa nilai12 = tp.getNilaiMatpel().get(11);
-		
-		KegiatanSiswa kegiatan1 = tp.getKegiatan().get(0);
-		KegiatanSiswa kegiatan2 = tp.getKegiatan().get(1);
-		KegiatanSiswa kegiatan3 = tp.getKegiatan().get(2);
-		KegiatanSiswa kegiatan4 = tp.getKegiatan().get(3);
-		KegiatanSiswa kegiatan5 = tp.getKegiatan().get(4);
-		KegiatanSiswa kegiatan6 = tp.getKegiatan().get(5);
-		
-		BudiPekertiSiswa akhlak = tp.getBudiPekerti().get(0);
-		BudiPekertiSiswa kepribadian = tp.getBudiPekerti().get(1);
-		
-		AbsensiSiswa sakit = tp.getAbsensi().get(0);
-		AbsensiSiswa izin = tp.getAbsensi().get(1);
-		AbsensiSiswa tanpaKeterangan = tp.getAbsensi().get(2);
-
+	public static void saveSiswa(File file, TahunPelajaran tahunP) {
+		SessionFactory sessionFactory = null;
+		Session session = null;
 		Document document = new Document(PageSize.A4);
 		try {
+			sessionFactory = HibernateUtil.getSessionFactory();
+			session = sessionFactory.openSession();
+			Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
+			daoTahunPelajaran.setSession(session);
+			
+			TahunPelajaran tahunPelajaran = daoTahunPelajaran.findByID(tahunP.getIdTahunPelajaran());
+			List<TahunPelajaran> listRanking = ((TahunPelajaranDao) daoTahunPelajaran).
+					findByKelasSemester(tahunP.getKelas(), tahunP.getSemester());
+			List<Double> totalRanking = listRanking.stream()
+										.map(t -> t.getTotalNilai())
+										.sorted(Comparator.reverseOrder())
+										.collect(Collectors.toList());
+			int ranking = totalRanking.indexOf(tahunPelajaran.getTotalNilai());
+			
+			for (TahunPelajaran tpp : listRanking) {
+				System.out.println("Nama: " + tpp.getSiswa().getNama());
+				System.out.println("Kelas: " + tpp.getKelas());
+				System.out.println("Semester: " + tpp.getSemester());
+				System.out.println("Nilai: " + tpp.getTotalNilai());
+			}
+			System.out.println("\n");
+			for (Double d : totalRanking) {
+				System.out.println("Nilai: " + d);
+			}
+			
+			NilaiSiswa nilai1 = tahunPelajaran.getNilaiMatpel().get(0);
+			NilaiSiswa nilai2 = tahunPelajaran.getNilaiMatpel().get(1);
+			NilaiSiswa nilai3 = tahunPelajaran.getNilaiMatpel().get(2);
+			NilaiSiswa nilai4 = tahunPelajaran.getNilaiMatpel().get(3);
+			NilaiSiswa nilai5 = tahunPelajaran.getNilaiMatpel().get(4);
+			NilaiSiswa nilai6 = tahunPelajaran.getNilaiMatpel().get(5);
+			NilaiSiswa nilai7 = tahunPelajaran.getNilaiMatpel().get(6);
+			NilaiSiswa nilai8 = tahunPelajaran.getNilaiMatpel().get(7);
+			NilaiSiswa nilai9 = tahunPelajaran.getNilaiMatpel().get(8);
+			NilaiSiswa nilai10 = tahunPelajaran.getNilaiMatpel().get(9);
+			NilaiSiswa nilai11 = tahunPelajaran.getNilaiMatpel().get(10);
+			NilaiSiswa nilai12 = tahunPelajaran.getNilaiMatpel().get(11);
+			KegiatanSiswa kegiatan1 = tahunPelajaran.getKegiatan().get(0);
+			KegiatanSiswa kegiatan2 = tahunPelajaran.getKegiatan().get(1);
+			KegiatanSiswa kegiatan3 = tahunPelajaran.getKegiatan().get(2);
+			KegiatanSiswa kegiatan4 = tahunPelajaran.getKegiatan().get(3);
+			KegiatanSiswa kegiatan5 = tahunPelajaran.getKegiatan().get(4);
+			KegiatanSiswa kegiatan6 = tahunPelajaran.getKegiatan().get(5);
+			BudiPekertiSiswa akhlak = tahunPelajaran.getBudiPekerti().get(0);
+			BudiPekertiSiswa kepribadian = tahunPelajaran.getBudiPekerti().get(1);
+			AbsensiSiswa sakit = tahunPelajaran.getAbsensi().get(0);
+			AbsensiSiswa izin = tahunPelajaran.getAbsensi().get(1);
+			AbsensiSiswa tanpaKeterangan = tahunPelajaran.getAbsensi().get(2);
+			
+			
 			PdfWriter.getInstance(document, new FileOutputStream(file));
-			
 			PdfPCell cell1, cell2, cell3, cell4, cell5, cell6;
-			
 			document.open();
-			Image logo = Image.getInstance(getClass().getResource(logoSandikta));
+			Image logo = Image.getInstance(SaveSiswaPdf.class.getResource(LOGO_SANDIKTA));
 			logo.scaleToFit(90, 90);
 			
 			// Table 1
@@ -212,7 +201,7 @@ public class SaveSiswaPdf {
 					getFont(FontFactory.defaultEncoding, 10)));
 			cell2.setBorder(Rectangle.NO_BORDER);
 			table2.addCell(cell2);
-			cell2 = new PdfPCell(new Phrase(":  " + siswa.getNama(), FontFactory.
+			cell2 = new PdfPCell(new Phrase(":  " + tahunPelajaran.getSiswa().getNama(), FontFactory.
 					getFont(FontFactory.defaultEncoding, 10)));
 			cell2.setBorder(Rectangle.NO_BORDER);
 			table2.addCell(cell2);
@@ -231,7 +220,7 @@ public class SaveSiswaPdf {
 					getFont(FontFactory.defaultEncoding, 10)));
 			cell2.setBorder(Rectangle.NO_BORDER);
 			table2.addCell(cell2);
-			cell2 = new PdfPCell(new Phrase(":  " + siswa.getNoInduk(), FontFactory.
+			cell2 = new PdfPCell(new Phrase(":  " + tahunPelajaran.getSiswa().getNoInduk(), FontFactory.
 					getFont(FontFactory.defaultEncoding, 10)));
 			cell2.setColspan(4);
 			cell2.setBorder(Rectangle.NO_BORDER);
@@ -686,7 +675,9 @@ public class SaveSiswaPdf {
 					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
 			table4.addCell(cell4);
 			
-			cell4 = new PdfPCell(new Phrase(" "));
+			cell4 = new PdfPCell(new Phrase(String.valueOf(++ranking),
+					FontFactory.getFont(FontFactory.defaultEncoding, 10)));
+			cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table4.addCell(cell4);
 			
 			// Kegiatan 3
@@ -858,7 +849,8 @@ public class SaveSiswaPdf {
 			
 			
 			
-			cell6 = new PdfPCell(new Phrase("Bekasi, " + String.valueOf(new SimpleDateFormat("dd/MM/yyyy").format(new Date())), 
+			cell6 = new PdfPCell(new Phrase("Bekasi, " + String.valueOf(
+					new SimpleDateFormat("dd/MM/yyyy").format(new Date())), 
 					FontFactory.
 					getFont(FontFactory.defaultEncoding, 10)));
 			cell6.setHorizontalAlignment(Element.ALIGN_CENTER);

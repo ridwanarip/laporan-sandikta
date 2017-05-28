@@ -1,4 +1,4 @@
-package net.sandikta.smp.aplikasi.desktop;
+package net.sandikta.smp.aplikasi.desktop.insert;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.hibernate.Session;
@@ -19,7 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ComboBox;
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
-import net.sandikta.smp.aplikasi.dao.TahunPelajaranDao;
+import net.sandikta.smp.aplikasi.dao.SiswaDao;
 import net.sandikta.smp.aplikasi.dao.interfaces.Dao;
 import net.sandikta.smp.aplikasi.entities.AbsensiSiswa;
 import net.sandikta.smp.aplikasi.entities.BudiPekertiSiswa;
@@ -36,10 +38,9 @@ import net.sandikta.smp.aplikasi.entities.enums.NilaiBudiPekerti;
 import net.sandikta.smp.aplikasi.entities.enums.NilaiKegiatan;
 import net.sandikta.smp.aplikasi.entities.enums.Semester;
 
-public class UpdateTahunPelajaranController implements Initializable {
+public class InsertSiswaController implements Initializable {
 	
 	private Siswa siswa = new Siswa();
-	private TahunPelajaran tahunPelajaran = new TahunPelajaran();
 	private Kelas kelasSiswa;
 	private Semester semesterSiswa;
 	private String tahunPelajaranSiswa;
@@ -71,55 +72,16 @@ public class UpdateTahunPelajaranController implements Initializable {
 	private AbsensiSiswa izin = new AbsensiSiswa();
 	private AbsensiSiswa tanpaKeterangan = new AbsensiSiswa();
 	
-	public void setInstances(Siswa siswa2, TahunPelajaran tp) {
-		siswa = siswa2;
-		siswa.getTahunPelajaran().add(tp);
-		tahunPelajaran = tp;
-		tahunPelajaran.setSiswa(siswa2);
-		
-		lblNamaSiswa.setText(siswa.getNama());
-		lblNoIndukSiswa.setText(siswa.getNoInduk());
-		lblAlamatSiswa.setText(siswa.getAlamat());
-		kelasSiswa = Kelas.valueOf(tahunPelajaran.getKelas().toString());
-		semesterSiswa = Semester.valueOf(tahunPelajaran.getSemester().toString());
-		tahunPelajaranSiswa = tahunPelajaran.getTahun();
-		
-//		nilaiSiswa1 = tahunPelajaran.getNilaiMatpel().get(0);
-//		txNilaiPelajaran1.setPromptText(String.valueOf(nilaiSiswa1.getNilaiAngka()));
-//		nilaiSiswa2 = tahunPelajaran.getNilaiMatpel().get(1);
-//		txNilaiPelajaran2.setPromptText(String.valueOf(nilaiSiswa2.getNilaiAngka()));
-//		nilaiSiswa3 = tahunPelajaran.getNilaiMatpel().get(2);
-//		txNilaiPelajaran3.setPromptText(String.valueOf(nilaiSiswa3.getNilaiAngka()));
-//		nilaiSiswa4 = tahunPelajaran.getNilaiMatpel().get(3);
-//		txNilaiPelajaran4.setPromptText(String.valueOf(nilaiSiswa4.getNilaiAngka()));
-//		nilaiSiswa5 = tahunPelajaran.getNilaiMatpel().get(4);
-//		txNilaiPelajaran5.setPromptText(String.valueOf(nilaiSiswa5.getNilaiAngka()));
-//		nilaiSiswa6 = tahunPelajaran.getNilaiMatpel().get(5);
-//		txNilaiPelajaran6.setPromptText(String.valueOf(nilaiSiswa6.getNilaiAngka()));
-//		nilaiSiswa7 = tahunPelajaran.getNilaiMatpel().get(6);
-//		txNilaiPelajaran7.setPromptText(String.valueOf(nilaiSiswa7.getNilaiAngka()));
-//		nilaiSiswa8 = tahunPelajaran.getNilaiMatpel().get(7);
-//		txNilaiPelajaran8.setPromptText(String.valueOf(nilaiSiswa8.getNilaiAngka()));
-//		nilaiSiswa9 = tahunPelajaran.getNilaiMatpel().get(8);
-//		txNilaiPelajaran9.setPromptText(String.valueOf(nilaiSiswa9.getNilaiAngka()));
-//		nilaiSiswa10 = tahunPelajaran.getNilaiMatpel().get(9);
-//		txNilaiPelajaran10.setPromptText(String.valueOf(nilaiSiswa10.getNilaiAngka()));
-//		nilaiSiswa11 = tahunPelajaran.getNilaiMatpel().get(10);
-//		txNilaiPelajaran11.setPromptText(String.valueOf(nilaiSiswa11.getNilaiAngka()));
-//		nilaiSiswa12 = tahunPelajaran.getNilaiMatpel().get(11);
-//		txNilaiPelajaran12.setPromptText(String.valueOf(nilaiSiswa12.getNilaiAngka()));
-	}
-	
 	@FXML
 	private Label lblTambahDataSiswa;
 	@FXML
 	private TabPane tabPaneSiswa;
 	@FXML
-	private Label lblNamaSiswa;
+	private TextField txNamaSiswa;
 	@FXML
-	private Label lblNoIndukSiswa;
+	private TextField txNomorInduk;
 	@FXML
-	private Label lblAlamatSiswa;
+	private TextField txAlamatSiswa;
 	@FXML
 	private ComboBox<Kelas> comboKelasSiswa;
 	@FXML
@@ -133,30 +95,6 @@ public class UpdateTahunPelajaranController implements Initializable {
 	private Label lblNilaiMataPelajaran;
 	@FXML
 	private Label lblNamaMataPelajaran;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel1;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel2;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel3;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel4;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel5;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel6;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel7;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel8;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel9;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel10;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel11;
-	@FXML
-	private ComboBox<MataPelajaran> comboNilaiMatpel12;
 	@FXML
 	private TextField txNilaiPelajaran1;
 	@FXML
@@ -181,6 +119,30 @@ public class UpdateTahunPelajaranController implements Initializable {
 	private TextField txNilaiPelajaran11;
 	@FXML
 	private TextField txNilaiPelajaran12;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel1;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel2;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel3;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel4;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel5;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel6;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel7;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel8;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel9;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel10;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel11;
+	@FXML
+	private ComboBox<MataPelajaran> comboNilaiMatpel12;
 	
 	@FXML
 	private Label lblNamaKegiatan;
@@ -214,24 +176,18 @@ public class UpdateTahunPelajaranController implements Initializable {
 	@FXML
 	private Button btnTambahData;
 	
-	ObservableList<Kelas> listKelas = FXCollections.observableArrayList(
-			Kelas.VIIA, Kelas.VIIB, Kelas.VIIC, Kelas.VIIIA, Kelas.VIIIB,
-			Kelas.VIIIC, Kelas.IXA, Kelas.IXB, Kelas.VIIIC);
+	ObservableList<Kelas> listKelas = FXCollections.observableArrayList(Kelas.values());
 	
-	ObservableList<Semester> listSemester = FXCollections.observableArrayList(
-			Semester.GANJIL, Semester.GENAP);
+	ObservableList<Semester> listSemester = FXCollections.observableArrayList(Semester.values());
 	
 	ObservableList<String> listTahunSiswa = FXCollections.observableArrayList(
 			"2015/2016", "2016/2017", "2017/2018", "2018/2019", "2019/2020");
 	
 	ObservableList<MataPelajaran> listNamaMataPelajaran = FXCollections.observableArrayList(MataPelajaran.values());
 	
-	ObservableList<NilaiKegiatan> listNialiKegiatan = FXCollections.observableArrayList(
-			NilaiKegiatan.A, NilaiKegiatan.B, NilaiKegiatan.C, NilaiKegiatan.KOSONG);
+	ObservableList<NilaiKegiatan> listNialiKegiatan = FXCollections.observableArrayList(NilaiKegiatan.values());
 	
-	ObservableList<NilaiBudiPekerti> listNilaiKepribadian = FXCollections.observableArrayList(
-			NilaiBudiPekerti.Sangat_Baik, NilaiBudiPekerti.Baik, NilaiBudiPekerti.Cukup_Baik,
-			NilaiBudiPekerti.Cukup);
+	ObservableList<NilaiBudiPekerti> listNilaiKepribadian = FXCollections.observableArrayList(NilaiBudiPekerti.values());
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -421,7 +377,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 		kegiatanSiswa6.setNamaKegiatan(NamaKegiatan.Taekwondo);
 		kegiatanSiswa6.setNilaiKegiatan(comboNilaiKegiatan6.getValue());
 	}
-	
+
 	@FXML
 	public void comboTambahNilaiKepribadian1(ActionEvent event) {
 		akhlak.setNamaBudiPekerti(NamaBudiPekerti.Akhlak);
@@ -434,7 +390,7 @@ public class UpdateTahunPelajaranController implements Initializable {
 		kepribadian.setNilaiBudiPekerti(comboNilaiKepribadian2.getValue());
 	}
 	
-	private TahunPelajaran getTahunPelajaran() {
+	private TahunPelajaran getTahunPelajaran(Siswa siswa) {
 		
 		TahunPelajaran tahunPelajaran = new TahunPelajaran();
 		tahunPelajaran.setSiswa(siswa);
@@ -442,6 +398,26 @@ public class UpdateTahunPelajaranController implements Initializable {
 		tahunPelajaran.setKelas(kelasSiswa);
 		tahunPelajaran.setSemester(semesterSiswa);
 		tahunPelajaran.setTahun(tahunPelajaranSiswa);
+		
+		List<Double> total = new ArrayList<Double>();
+		total.add(nilaiSiswa1.getNilaiAngka());
+		total.add(nilaiSiswa2.getNilaiAngka());
+		total.add(nilaiSiswa3.getNilaiAngka());
+		total.add(nilaiSiswa4.getNilaiAngka());
+		total.add(nilaiSiswa5.getNilaiAngka());
+		total.add(nilaiSiswa6.getNilaiAngka());
+		total.add(nilaiSiswa7.getNilaiAngka());
+		total.add(nilaiSiswa8.getNilaiAngka());
+		total.add(nilaiSiswa9.getNilaiAngka());
+		total.add(nilaiSiswa10.getNilaiAngka());
+		total.add(nilaiSiswa11.getNilaiAngka());
+		total.add(nilaiSiswa12.getNilaiAngka());
+		
+		double totalNilai = 0;
+		for (Double d : total) {
+			totalNilai += d;
+		}
+		tahunPelajaran.setTotalNilai(totalNilai);
 		
 		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa1);
 		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa2);
@@ -480,6 +456,14 @@ public class UpdateTahunPelajaranController implements Initializable {
 		return tahunPelajaran;
 	}
 	
+	private Siswa getSiswa() {
+		Siswa siswa = new Siswa();
+		siswa.setNama(txNamaSiswa.getText());
+		siswa.setNoInduk(txNomorInduk.getText());
+		siswa.setAlamat(txAlamatSiswa.getText());
+		return siswa;
+	}
+
 	@FXML
 	public void saveSiswa(ActionEvent event) {
 		SessionFactory sessionFactory = null;
@@ -489,13 +473,14 @@ public class UpdateTahunPelajaranController implements Initializable {
 		try {
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
-			daoTahunPelajaran.setSession(session);
+			Dao<Siswa, Long> daoSiswa = new SiswaDao();
+			daoSiswa.setSession(session);
 			
-			tahunPelajaran = getTahunPelajaran();
+			siswa = getSiswa();
+			siswa.getTahunPelajaran().add(getTahunPelajaran(siswa));
 			
 			transaction = session.beginTransaction();
-			daoTahunPelajaran.save(tahunPelajaran);
+			daoSiswa.save(siswa);
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

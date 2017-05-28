@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +30,7 @@ public class Siswa {
 	@Column(name="ALAMAT", nullable=false)
 	private String alamat;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="siswa")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="siswa")
 	private List<TahunPelajaran> tahunPelajaran = new ArrayList<TahunPelajaran>();
 
 	public Long getIdSiswa() {

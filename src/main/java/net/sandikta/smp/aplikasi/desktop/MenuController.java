@@ -26,6 +26,7 @@ import javafx.util.Callback;
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
 import net.sandikta.smp.aplikasi.dao.SiswaDao;
 import net.sandikta.smp.aplikasi.dao.interfaces.Dao;
+import net.sandikta.smp.aplikasi.desktop.select.siswa.SelectSiswaController;
 import net.sandikta.smp.aplikasi.entities.Siswa;
 
 public class MenuController implements Initializable {
@@ -75,26 +76,6 @@ public class MenuController implements Initializable {
 		}
 	}
 	
-//	@FXML
-//	public void signOut(ActionEvent event) {
-//		try {
-//			((Node) event.getSource()).getScene().getWindow().hide();
-//			Stage primaryStage = new Stage();
-//			FXMLLoader loader = new FXMLLoader();
-//			
-//			Pane root = loader.load(getClass()
-//					.getResource("Login.fxml").openStream());
-//			
-//			Scene scene = new Scene(root);
-//			scene.getStylesheets().add(getClass()
-//					.getResource("application.css").toExternalForm());
-//			primaryStage.setScene(scene);
-//			primaryStage.show();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
 	@FXML
 	public void cariSiswa(ActionEvent event) {
 		Siswa siswa = new Siswa();
@@ -123,11 +104,9 @@ public class MenuController implements Initializable {
 			FXMLLoader loader = new FXMLLoader();
 			
 			Pane root = loader.load(getClass()
-					.getResource("InsertSiswa.fxml").openStream());
+					.getResource("insert/InsertSiswa.fxml").openStream());
 			
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass()
-					.getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -137,7 +116,19 @@ public class MenuController implements Initializable {
 	
 	@FXML
 	public void selectKelas(ActionEvent event) {
-		
+		try { 
+			Stage primaryStage = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			
+			Pane root = loader.load(getClass()
+					.getResource("select/kelas/SelectKelas.fxml").openStream());
+			
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
@@ -145,21 +136,16 @@ public class MenuController implements Initializable {
 		try {
 			Stage primaryStage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
-			
 			Pane root = loader.load(getClass()
-					.getResource("SelectSiswa.fxml").openStream());
-			
+					.getResource("select/siswa/SelectSiswa.fxml").openStream());
 			SelectSiswaController selectSiswaController = (SelectSiswaController)
 					loader.getController();
 			
 			int selectSiswa = listSiswa.getSelectionModel().getSelectedIndex();
 			Siswa siswaSelect = siswaObser.get(selectSiswa);
-			
 			selectSiswaController.setSiswa(siswaSelect);
 			
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass()
-					.getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -172,7 +158,6 @@ public class MenuController implements Initializable {
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		Transaction transaction = null;
-		
 		try {
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
@@ -193,7 +178,7 @@ public class MenuController implements Initializable {
 		}
 	}
 
-	public List<Siswa> getAllSiswa() {
+	private List<Siswa> getAllSiswa() {
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		try {
