@@ -109,7 +109,6 @@ public class SelectSiswaController implements Initializable {
 			((Node) event.getSource()).getScene().getWindow().hide();
 			Stage primaryStage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
-			
 			Pane root = loader.load(getClass()
 					.getResource("InsertTahunPelajaran.fxml").openStream());
 			
@@ -131,7 +130,6 @@ public class SelectSiswaController implements Initializable {
 			((Node) event.getSource()).getScene().getWindow().hide();
 			Stage primaryStage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
-			
 			Pane root = loader.load(getClass()
 					.getResource("UpdateTahunPelajaran.fxml").openStream());
 			
@@ -141,12 +139,9 @@ public class SelectSiswaController implements Initializable {
 			int selectTahunPelajaran = listTahunPelajaranSiswa.getSelectionModel().
 					getSelectedIndex();
 			TahunPelajaran tp = tahunPelajaranObser.get(selectTahunPelajaran);
-			tp.setSiswa(siswa);
-			updateTahunPelajaran.setInstances(siswa, tp);
+			updateTahunPelajaran.setTahun(tp);
 			
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass()
-					.getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {

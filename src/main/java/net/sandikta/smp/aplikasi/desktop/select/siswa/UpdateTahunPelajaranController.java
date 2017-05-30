@@ -25,7 +25,6 @@ import net.sandikta.smp.aplikasi.entities.AbsensiSiswa;
 import net.sandikta.smp.aplikasi.entities.BudiPekertiSiswa;
 import net.sandikta.smp.aplikasi.entities.KegiatanSiswa;
 import net.sandikta.smp.aplikasi.entities.NilaiSiswa;
-import net.sandikta.smp.aplikasi.entities.Siswa;
 import net.sandikta.smp.aplikasi.entities.TahunPelajaran;
 import net.sandikta.smp.aplikasi.entities.enums.Kelas;
 import net.sandikta.smp.aplikasi.entities.enums.MataPelajaran;
@@ -38,11 +37,7 @@ import net.sandikta.smp.aplikasi.entities.enums.Semester;
 
 public class UpdateTahunPelajaranController implements Initializable {
 	
-	private Siswa siswa = new Siswa();
 	private TahunPelajaran tahunPelajaran = new TahunPelajaran();
-	private Kelas kelasSiswa;
-	private Semester semesterSiswa;
-	private String tahunPelajaranSiswa;
 	
 	private NilaiSiswa nilaiSiswa1 = new NilaiSiswa();
 	private NilaiSiswa nilaiSiswa2 = new NilaiSiswa();
@@ -71,43 +66,11 @@ public class UpdateTahunPelajaranController implements Initializable {
 	private AbsensiSiswa izin = new AbsensiSiswa();
 	private AbsensiSiswa tanpaKeterangan = new AbsensiSiswa();
 	
-	public void setInstances(Siswa siswa2, TahunPelajaran tp) {
-		siswa = siswa2;
-		siswa.getTahunPelajaran().add(tp);
-		tahunPelajaran = tp;
-		tahunPelajaran.setSiswa(siswa2);
-		
-		lblNamaSiswa.setText(siswa.getNama());
-		lblNoIndukSiswa.setText(siswa.getNoInduk());
-		lblAlamatSiswa.setText(siswa.getAlamat());
-		kelasSiswa = Kelas.valueOf(tahunPelajaran.getKelas().toString());
-		semesterSiswa = Semester.valueOf(tahunPelajaran.getSemester().toString());
-		tahunPelajaranSiswa = tahunPelajaran.getTahun();
-		
-//		nilaiSiswa1 = tahunPelajaran.getNilaiMatpel().get(0);
-//		txNilaiPelajaran1.setPromptText(String.valueOf(nilaiSiswa1.getNilaiAngka()));
-//		nilaiSiswa2 = tahunPelajaran.getNilaiMatpel().get(1);
-//		txNilaiPelajaran2.setPromptText(String.valueOf(nilaiSiswa2.getNilaiAngka()));
-//		nilaiSiswa3 = tahunPelajaran.getNilaiMatpel().get(2);
-//		txNilaiPelajaran3.setPromptText(String.valueOf(nilaiSiswa3.getNilaiAngka()));
-//		nilaiSiswa4 = tahunPelajaran.getNilaiMatpel().get(3);
-//		txNilaiPelajaran4.setPromptText(String.valueOf(nilaiSiswa4.getNilaiAngka()));
-//		nilaiSiswa5 = tahunPelajaran.getNilaiMatpel().get(4);
-//		txNilaiPelajaran5.setPromptText(String.valueOf(nilaiSiswa5.getNilaiAngka()));
-//		nilaiSiswa6 = tahunPelajaran.getNilaiMatpel().get(5);
-//		txNilaiPelajaran6.setPromptText(String.valueOf(nilaiSiswa6.getNilaiAngka()));
-//		nilaiSiswa7 = tahunPelajaran.getNilaiMatpel().get(6);
-//		txNilaiPelajaran7.setPromptText(String.valueOf(nilaiSiswa7.getNilaiAngka()));
-//		nilaiSiswa8 = tahunPelajaran.getNilaiMatpel().get(7);
-//		txNilaiPelajaran8.setPromptText(String.valueOf(nilaiSiswa8.getNilaiAngka()));
-//		nilaiSiswa9 = tahunPelajaran.getNilaiMatpel().get(8);
-//		txNilaiPelajaran9.setPromptText(String.valueOf(nilaiSiswa9.getNilaiAngka()));
-//		nilaiSiswa10 = tahunPelajaran.getNilaiMatpel().get(9);
-//		txNilaiPelajaran10.setPromptText(String.valueOf(nilaiSiswa10.getNilaiAngka()));
-//		nilaiSiswa11 = tahunPelajaran.getNilaiMatpel().get(10);
-//		txNilaiPelajaran11.setPromptText(String.valueOf(nilaiSiswa11.getNilaiAngka()));
-//		nilaiSiswa12 = tahunPelajaran.getNilaiMatpel().get(11);
-//		txNilaiPelajaran12.setPromptText(String.valueOf(nilaiSiswa12.getNilaiAngka()));
+	public void setTahun(TahunPelajaran tp) {
+		this.tahunPelajaran = tp;
+		this.lblNamaSiswa.setText(tahunPelajaran.getSiswa().getNama());
+		this.lblNoIndukSiswa.setText(tahunPelajaran.getSiswa().getNoInduk());
+		this.lblAlamatSiswa.setText(tahunPelajaran.getSiswa().getAlamat());
 	}
 	
 	@FXML
@@ -265,17 +228,17 @@ public class UpdateTahunPelajaranController implements Initializable {
 
 	@FXML
 	public void comboTambahKelasSiswa(ActionEvent event) {
-		kelasSiswa = comboKelasSiswa.getValue();
+		tahunPelajaran.setKelas(comboKelasSiswa.getValue());
 	}
 	
 	@FXML
 	public void comboTambahSemesterSiswa(ActionEvent event) {
-		semesterSiswa = comboSemesterSiswa.getValue();
+		tahunPelajaran.setSemester(comboSemesterSiswa.getValue());
 	}
 	
 	@FXML
 	public void comboTambahTahunPelajaranSiswa(ActionEvent event) {
-		tahunPelajaranSiswa = comboTahunPelajaranSiswa.getValue();
+		tahunPelajaran.setTahun(comboTahunPelajaranSiswa.getValue());
 	}
 	
 	@FXML
@@ -435,36 +398,37 @@ public class UpdateTahunPelajaranController implements Initializable {
 	}
 	
 	private TahunPelajaran getTahunPelajaran() {
+		TahunPelajaran tPelajaran = new TahunPelajaran();
 		
-		TahunPelajaran tahunPelajaran = new TahunPelajaran();
-		tahunPelajaran.setSiswa(siswa);
-
-		tahunPelajaran.setKelas(kelasSiswa);
-		tahunPelajaran.setSemester(semesterSiswa);
-		tahunPelajaran.setTahun(tahunPelajaranSiswa);
+		tPelajaran.setIdTahunPelajaran(tahunPelajaran.getIdTahunPelajaran());
+		tPelajaran.setSiswa(tahunPelajaran.getSiswa());
+		tPelajaran.setKelas(tahunPelajaran.getKelas());
+		tPelajaran.setSemester(tahunPelajaran.getSemester());
+		tPelajaran.setTahun(tahunPelajaran.getTahun());
+		tPelajaran.setTotalNilai(tahunPelajaran.getTotalNilai());
 		
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa1);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa2);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa3);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa4);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa5);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa6);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa7);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa8);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa9);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa10);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa11);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa12);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa1);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa2);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa3);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa4);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa5);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa6);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa7);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa8);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa9);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa10);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa11);
+		tPelajaran.getNilaiMatpel().add(nilaiSiswa12);
 		
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa1);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa2);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa3);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa4);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa5);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa6);
+		tPelajaran.getKegiatan().add(kegiatanSiswa1);
+		tPelajaran.getKegiatan().add(kegiatanSiswa2);
+		tPelajaran.getKegiatan().add(kegiatanSiswa3);
+		tPelajaran.getKegiatan().add(kegiatanSiswa4);
+		tPelajaran.getKegiatan().add(kegiatanSiswa5);
+		tPelajaran.getKegiatan().add(kegiatanSiswa6);
 		
-		tahunPelajaran.getBudiPekerti().add(akhlak);
-		tahunPelajaran.getBudiPekerti().add(kepribadian);
+		tPelajaran.getBudiPekerti().add(akhlak);
+		tPelajaran.getBudiPekerti().add(kepribadian);
 		
 		sakit.setNamaAbsensi(NamaAbsensi.Sakit);
 		sakit.setJumlah(Integer.parseInt(txNilaiAbsenSakit.getText()));
@@ -473,11 +437,11 @@ public class UpdateTahunPelajaranController implements Initializable {
 		tanpaKeterangan.setNamaAbsensi(NamaAbsensi.Tanpa_Keterangan);
 		tanpaKeterangan.setJumlah(Integer.parseInt(txNilaiAbsenTp.getText()));
 		
-		tahunPelajaran.getAbsensi().add(sakit);
-		tahunPelajaran.getAbsensi().add(izin);
-		tahunPelajaran.getAbsensi().add(tanpaKeterangan);
+		tPelajaran.getAbsensi().add(sakit);
+		tPelajaran.getAbsensi().add(izin);
+		tPelajaran.getAbsensi().add(tanpaKeterangan);
 		
-		return tahunPelajaran;
+		return tPelajaran;
 	}
 	
 	@FXML
@@ -485,17 +449,17 @@ public class UpdateTahunPelajaranController implements Initializable {
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		Transaction transaction = null;
-		
 		try {
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
-			Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
-			daoTahunPelajaran.setSession(session);
+			Dao<TahunPelajaran, Long> daoTahun = new TahunPelajaranDao();
+			daoTahun.setSession(session);
 			
-			tahunPelajaran = getTahunPelajaran();
+			TahunPelajaran tPelajaran = new TahunPelajaran();
+			tPelajaran = getTahunPelajaran();
 			
 			transaction = session.beginTransaction();
-			daoTahunPelajaran.save(tahunPelajaran);
+			daoTahun.update(tPelajaran);
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -73,14 +73,11 @@ public class InsertTahunPelajaranController implements Initializable {
 	private AbsensiSiswa izin = new AbsensiSiswa();
 	private AbsensiSiswa tanpaKeterangan = new AbsensiSiswa();
 	
-	public Siswa getSiswa() {
-		return siswa;
-	}
-	public void setSiswa(Siswa siswa) {
-		this.siswa = siswa;
-		lblNamaSiswa.setText(siswa.getNama());
-		lblNoIndukSiswa.setText(siswa.getNoInduk());
-		lblAlamatSiswa.setText(siswa.getAlamat());
+	public void setSiswa(Siswa sis) {
+		this.siswa = sis;
+		this.lblNamaSiswa.setText(siswa.getNama());
+		this.lblNoIndukSiswa.setText(siswa.getNoInduk());
+		this.lblAlamatSiswa.setText(siswa.getAlamat());
 	}
 	
 	@FXML

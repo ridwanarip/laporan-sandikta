@@ -28,7 +28,7 @@ public class TahunPelajaran {
 	@Column(name="ID_TAHUN_PELAJARAN")
 	private Long IdTahunPelajaran;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name="ID_SISWA")
 	private Siswa siswa;
 	
@@ -46,19 +46,19 @@ public class TahunPelajaran {
 	@Enumerated(EnumType.STRING)
 	private Semester semester;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="ID_TAHUN_PELAJARAN")
 	private List<NilaiSiswa> nilaiMatpel = new ArrayList<NilaiSiswa>();
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="ID_TAHUN_PELAJARAN")
 	private List<KegiatanSiswa> kegiatan = new ArrayList<KegiatanSiswa>();
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="ID_TAHUN_PELAJARAN")
 	private List<BudiPekertiSiswa> budiPekerti = new ArrayList<BudiPekertiSiswa>();
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="ID_TAHUN_PELAJARAN")
 	private List<AbsensiSiswa> absensi = new ArrayList<AbsensiSiswa>();
 

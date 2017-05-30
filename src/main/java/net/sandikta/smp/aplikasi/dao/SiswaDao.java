@@ -67,4 +67,9 @@ public class SiswaDao implements Dao<Siswa, Long> {
 	public void update(Siswa siswa) {
 		this.session.update(siswa);
 	}
+
+	@Override
+	public void flush() {
+		this.session.flush();
+	}
 }

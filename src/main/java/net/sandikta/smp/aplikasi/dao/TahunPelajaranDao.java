@@ -81,6 +81,11 @@ public class TahunPelajaranDao implements Dao<TahunPelajaran, Long> {
 
 	@Override
 	public void update(TahunPelajaran tahunPelajaran) {
-		this.session.update(tahunPelajaran);
+		this.session.merge(tahunPelajaran);
+	}
+
+	@Override
+	public void flush() {
+		this.session.flush();
 	}
 }

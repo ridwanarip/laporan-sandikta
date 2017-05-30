@@ -40,10 +40,7 @@ import net.sandikta.smp.aplikasi.entities.enums.Semester;
 
 public class InsertSiswaController implements Initializable {
 	
-	private Siswa siswa = new Siswa();
-	private Kelas kelasSiswa;
-	private Semester semesterSiswa;
-	private String tahunPelajaranSiswa;
+	private TahunPelajaran tahunPelajaran = new TahunPelajaran();
 	
 	private NilaiSiswa nilaiSiswa1 = new NilaiSiswa();
 	private NilaiSiswa nilaiSiswa2 = new NilaiSiswa();
@@ -221,17 +218,17 @@ public class InsertSiswaController implements Initializable {
 
 	@FXML
 	public void comboTambahKelasSiswa(ActionEvent event) {
-		kelasSiswa = comboKelasSiswa.getValue();
+		tahunPelajaran.setKelas(comboKelasSiswa.getValue());
 	}
 	
 	@FXML
 	public void comboTambahSemesterSiswa(ActionEvent event) {
-		semesterSiswa = comboSemesterSiswa.getValue();
+		tahunPelajaran.setSemester(comboSemesterSiswa.getValue());
 	}
 	
 	@FXML
 	public void comboTambahTahunPelajaranSiswa(ActionEvent event) {
-		tahunPelajaranSiswa = comboTahunPelajaranSiswa.getValue();
+		tahunPelajaran.setTahun(comboTahunPelajaranSiswa.getValue());
 	}
 	
 	@FXML
@@ -390,94 +387,80 @@ public class InsertSiswaController implements Initializable {
 		kepribadian.setNilaiBudiPekerti(comboNilaiKepribadian2.getValue());
 	}
 	
-	private TahunPelajaran getTahunPelajaran(Siswa siswa) {
-		
-		TahunPelajaran tahunPelajaran = new TahunPelajaran();
-		tahunPelajaran.setSiswa(siswa);
-
-		tahunPelajaran.setKelas(kelasSiswa);
-		tahunPelajaran.setSemester(semesterSiswa);
-		tahunPelajaran.setTahun(tahunPelajaranSiswa);
-		
-		List<Double> total = new ArrayList<Double>();
-		total.add(nilaiSiswa1.getNilaiAngka());
-		total.add(nilaiSiswa2.getNilaiAngka());
-		total.add(nilaiSiswa3.getNilaiAngka());
-		total.add(nilaiSiswa4.getNilaiAngka());
-		total.add(nilaiSiswa5.getNilaiAngka());
-		total.add(nilaiSiswa6.getNilaiAngka());
-		total.add(nilaiSiswa7.getNilaiAngka());
-		total.add(nilaiSiswa8.getNilaiAngka());
-		total.add(nilaiSiswa9.getNilaiAngka());
-		total.add(nilaiSiswa10.getNilaiAngka());
-		total.add(nilaiSiswa11.getNilaiAngka());
-		total.add(nilaiSiswa12.getNilaiAngka());
-		
-		double totalNilai = 0;
-		for (Double d : total) {
-			totalNilai += d;
-		}
-		tahunPelajaran.setTotalNilai(totalNilai);
-		
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa1);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa2);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa3);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa4);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa5);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa6);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa7);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa8);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa9);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa10);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa11);
-		tahunPelajaran.getNilaiMatpel().add(nilaiSiswa12);
-		
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa1);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa2);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa3);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa4);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa5);
-		tahunPelajaran.getKegiatan().add(kegiatanSiswa6);
-		
-		tahunPelajaran.getBudiPekerti().add(akhlak);
-		tahunPelajaran.getBudiPekerti().add(kepribadian);
-		
-		sakit.setNamaAbsensi(NamaAbsensi.Sakit);
-		sakit.setJumlah(Integer.parseInt(txNilaiAbsenSakit.getText()));
-		izin.setNamaAbsensi(NamaAbsensi.Izin);
-		izin.setJumlah(Integer.parseInt(txNilaiAbsenIzin.getText()));
-		tanpaKeterangan.setNamaAbsensi(NamaAbsensi.Tanpa_Keterangan);
-		tanpaKeterangan.setJumlah(Integer.parseInt(txNilaiAbsenTp.getText()));
-		
-		tahunPelajaran.getAbsensi().add(sakit);
-		tahunPelajaran.getAbsensi().add(izin);
-		tahunPelajaran.getAbsensi().add(tanpaKeterangan);
-		
-		return tahunPelajaran;
-	}
-	
-	private Siswa getSiswa() {
-		Siswa siswa = new Siswa();
-		siswa.setNama(txNamaSiswa.getText());
-		siswa.setNoInduk(txNomorInduk.getText());
-		siswa.setAlamat(txAlamatSiswa.getText());
-		return siswa;
-	}
-
 	@FXML
 	public void saveSiswa(ActionEvent event) {
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		Transaction transaction = null;
-		
 		try {
 			sessionFactory = HibernateUtil.getSessionFactory();
 			session = sessionFactory.openSession();
 			Dao<Siswa, Long> daoSiswa = new SiswaDao();
 			daoSiswa.setSession(session);
 			
-			siswa = getSiswa();
-			siswa.getTahunPelajaran().add(getTahunPelajaran(siswa));
+			//Siswa
+			Siswa siswa = new Siswa();
+			siswa.setNama(txNamaSiswa.getText());
+			siswa.setNoInduk(txNomorInduk.getText());
+			siswa.setAlamat(txAlamatSiswa.getText());
+			
+			//TahunPelajaran
+			List<Double> total = new ArrayList<Double>();
+			total.add(nilaiSiswa1.getNilaiAngka());
+			total.add(nilaiSiswa2.getNilaiAngka());
+			total.add(nilaiSiswa3.getNilaiAngka());
+			total.add(nilaiSiswa4.getNilaiAngka());
+			total.add(nilaiSiswa5.getNilaiAngka());
+			total.add(nilaiSiswa6.getNilaiAngka());
+			total.add(nilaiSiswa7.getNilaiAngka());
+			total.add(nilaiSiswa8.getNilaiAngka());
+			total.add(nilaiSiswa9.getNilaiAngka());
+			total.add(nilaiSiswa10.getNilaiAngka());
+			total.add(nilaiSiswa11.getNilaiAngka());
+			total.add(nilaiSiswa12.getNilaiAngka());
+			
+			double totalNilai = 0;
+			for (Double d : total) {
+				totalNilai += d;
+			}
+			tahunPelajaran.setTotalNilai(totalNilai);
+			
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa1);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa2);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa3);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa4);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa5);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa6);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa7);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa8);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa9);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa10);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa11);
+			tahunPelajaran.getNilaiMatpel().add(nilaiSiswa12);
+			
+			tahunPelajaran.getKegiatan().add(kegiatanSiswa1);
+			tahunPelajaran.getKegiatan().add(kegiatanSiswa2);
+			tahunPelajaran.getKegiatan().add(kegiatanSiswa3);
+			tahunPelajaran.getKegiatan().add(kegiatanSiswa4);
+			tahunPelajaran.getKegiatan().add(kegiatanSiswa5);
+			tahunPelajaran.getKegiatan().add(kegiatanSiswa6);
+			
+			tahunPelajaran.getBudiPekerti().add(akhlak);
+			tahunPelajaran.getBudiPekerti().add(kepribadian);
+			
+			sakit.setNamaAbsensi(NamaAbsensi.Sakit);
+			sakit.setJumlah(Integer.parseInt(txNilaiAbsenSakit.getText()));
+			izin.setNamaAbsensi(NamaAbsensi.Izin);
+			izin.setJumlah(Integer.parseInt(txNilaiAbsenIzin.getText()));
+			tanpaKeterangan.setNamaAbsensi(NamaAbsensi.Tanpa_Keterangan);
+			tanpaKeterangan.setJumlah(Integer.parseInt(txNilaiAbsenTp.getText()));
+			
+			tahunPelajaran.getAbsensi().add(sakit);
+			tahunPelajaran.getAbsensi().add(izin);
+			tahunPelajaran.getAbsensi().add(tanpaKeterangan);
+			
+			siswa.getTahunPelajaran().add(tahunPelajaran);
+			tahunPelajaran.setSiswa(siswa);
 			
 			transaction = session.beginTransaction();
 			daoSiswa.save(siswa);

@@ -19,7 +19,7 @@ public interface Dao<T, ID extends Serializable> {
 	
 	public void update(T entity);
 
-//	public void flush();
+	public void flush();
 	
 //	public void clear();
 }
