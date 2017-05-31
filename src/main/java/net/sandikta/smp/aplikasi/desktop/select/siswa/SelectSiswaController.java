@@ -5,11 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.hibernate.Session;
@@ -22,7 +27,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -119,8 +128,35 @@ public class SelectSiswaController implements Initializable {
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Exception Dialog");
+			alert.setHeaderText("Error! \nSilahkan pilih list siswa!");
+			
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			String exceptionText = sw.toString();
+			
+			Label label = new Label("The exception stacktrace was:");
+			
+			TextArea textArea = new TextArea(exceptionText);
+			textArea.setEditable(false);
+			textArea.setWrapText(true);
+			
+			textArea.setMaxWidth(Double.MAX_VALUE);
+			textArea.setMaxHeight(Double.MAX_VALUE);
+			GridPane.setVgrow(textArea, Priority.ALWAYS);
+			GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(Double.MAX_VALUE);
+			expContent.add(label, 0, 0);
+			expContent.add(textArea, 0, 1);
+
+			alert.getDialogPane().setExpandableContent(expContent);
+			alert.showAndWait();
 		}
 	}
 	
@@ -144,8 +180,35 @@ public class SelectSiswaController implements Initializable {
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Exception Dialog");
+			alert.setHeaderText("Error! \nSilahkan pilih list siswa!");
+			
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			String exceptionText = sw.toString();
+			
+			Label label = new Label("The exception stacktrace was:");
+			
+			TextArea textArea = new TextArea(exceptionText);
+			textArea.setEditable(false);
+			textArea.setWrapText(true);
+			
+			textArea.setMaxWidth(Double.MAX_VALUE);
+			textArea.setMaxHeight(Double.MAX_VALUE);
+			GridPane.setVgrow(textArea, Priority.ALWAYS);
+			GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(Double.MAX_VALUE);
+			expContent.add(label, 0, 0);
+			expContent.add(textArea, 0, 1);
+
+			alert.getDialogPane().setExpandableContent(expContent);
+			alert.showAndWait();
 		}
 	}
 
@@ -172,20 +235,60 @@ public class SelectSiswaController implements Initializable {
 		Session session = null;
 		Transaction transaction = null;
 		try {
-			sessionFactory = HibernateUtil.getSessionFactory();
-			session = sessionFactory.openSession();
-			Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
-			daoTahunPelajaran.setSession(session);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmation Dialog");
+			alert.setHeaderText("Apakah Anda yaking menghapus data ini?");
 			
 			int selectTahunPelajaran = listTahunPelajaranSiswa.getSelectionModel().
 					getSelectedIndex();
 			TahunPelajaran tp = tahunPelajaranObser.get(selectTahunPelajaran);
 			
-			transaction = session.beginTransaction();
-			daoTahunPelajaran.delete(tp);
-			transaction.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				sessionFactory = HibernateUtil.getSessionFactory();
+				session = sessionFactory.openSession();
+				Dao<TahunPelajaran, Long> daoTahunPelajaran = new TahunPelajaranDao();
+				daoTahunPelajaran.setSession(session);
+				
+				transaction = session.beginTransaction();
+				daoTahunPelajaran.delete(tp);
+				transaction.commit();
+				
+				Alert alert1 = new Alert(AlertType.INFORMATION);
+				alert1.setTitle("Information Dialog");
+				alert1.setHeaderText("Data telah berhasil dihapus!");
+				alert1.showAndWait();
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Exception Dialog");
+			alert.setHeaderText("Error! \nSilahkan pilih list siswa!");
+			
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			String exceptionText = sw.toString();
+			
+			Label label = new Label("The exception stacktrace was:");
+			
+			TextArea textArea = new TextArea(exceptionText);
+			textArea.setEditable(false);
+			textArea.setWrapText(true);
+			
+			textArea.setMaxWidth(Double.MAX_VALUE);
+			textArea.setMaxHeight(Double.MAX_VALUE);
+			GridPane.setVgrow(textArea, Priority.ALWAYS);
+			GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(Double.MAX_VALUE);
+			expContent.add(label, 0, 0);
+			expContent.add(textArea, 0, 1);
+
+			alert.getDialogPane().setExpandableContent(expContent);
+			alert.showAndWait();
 			transaction.rollback();
 		} finally {
 			session.close();

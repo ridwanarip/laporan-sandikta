@@ -2,9 +2,12 @@ package net.sandikta.smp.aplikasi.desktop.select.kelas;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,6 +21,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -88,8 +95,35 @@ public class ListSiswaKelasController implements Initializable {
 			List<TahunPelajaran> tahunPelajaran = ((TahunPelajaranDao) 
 					daoTahunPelajaran).findByKelasSemester(kelas, sms);
 			return tahunPelajaran;
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Exception Dialog");
+			alert.setHeaderText("Error!");
+			
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			String exceptionText = sw.toString();
+			
+			Label label = new Label("The exception stacktrace was:");
+			
+			TextArea textArea = new TextArea(exceptionText);
+			textArea.setEditable(false);
+			textArea.setWrapText(true);
+			
+			textArea.setMaxWidth(Double.MAX_VALUE);
+			textArea.setMaxHeight(Double.MAX_VALUE);
+			GridPane.setVgrow(textArea, Priority.ALWAYS);
+			GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(Double.MAX_VALUE);
+			expContent.add(label, 0, 0);
+			expContent.add(textArea, 0, 1);
+
+			alert.getDialogPane().setExpandableContent(expContent);
+			alert.showAndWait();
 			return null;
 		} finally {
 			session.close();

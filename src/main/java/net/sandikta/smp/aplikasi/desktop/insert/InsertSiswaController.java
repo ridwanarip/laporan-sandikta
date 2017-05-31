@@ -2,9 +2,16 @@ package net.sandikta.smp.aplikasi.desktop.insert;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +26,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import net.sandikta.smp.aplikasi.dao.HibernateUtil;
 import net.sandikta.smp.aplikasi.dao.SiswaDao;
@@ -398,13 +406,11 @@ public class InsertSiswaController implements Initializable {
 			Dao<Siswa, Long> daoSiswa = new SiswaDao();
 			daoSiswa.setSession(session);
 			
-			//Siswa
 			Siswa siswa = new Siswa();
 			siswa.setNama(txNamaSiswa.getText());
 			siswa.setNoInduk(txNomorInduk.getText());
 			siswa.setAlamat(txAlamatSiswa.getText());
 			
-			//TahunPelajaran
 			List<Double> total = new ArrayList<Double>();
 			total.add(nilaiSiswa1.getNilaiAngka());
 			total.add(nilaiSiswa2.getNilaiAngka());
@@ -465,8 +471,41 @@ public class InsertSiswaController implements Initializable {
 			transaction = session.beginTransaction();
 			daoSiswa.save(siswa);
 			transaction.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText("Data telah berhasil disimpan!");
+			alert.showAndWait();
+			((Node) event.getSource()).getScene().getWindow().hide();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Exception Dialog");
+			alert.setHeaderText("Error! \nSilahkan pilih list siswa!");
+			
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			String exceptionText = sw.toString();
+			
+			Label label = new Label("The exception stacktrace was:");
+			
+			TextArea textArea = new TextArea(exceptionText);
+			textArea.setEditable(false);
+			textArea.setWrapText(true);
+			
+			textArea.setMaxWidth(Double.MAX_VALUE);
+			textArea.setMaxHeight(Double.MAX_VALUE);
+			GridPane.setVgrow(textArea, Priority.ALWAYS);
+			GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(Double.MAX_VALUE);
+			expContent.add(label, 0, 0);
+			expContent.add(textArea, 0, 1);
+
+			alert.getDialogPane().setExpandableContent(expContent);
+			alert.showAndWait();
 			transaction.rollback();
 		} finally {
 			session.close();
