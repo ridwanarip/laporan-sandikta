@@ -13,7 +13,7 @@ import net.sandikta.smp.aplikasi.entities.enums.NamaKegiatan;
 import net.sandikta.smp.aplikasi.entities.enums.NilaiKegiatan;
 
 @Entity
-@Table(name="KEGIATAN_SISWA")
+@Table(name="NILAI_KEGIATAN")
 public class KegiatanSiswa {
 
 	@Id

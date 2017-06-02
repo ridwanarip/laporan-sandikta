@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="net.sandikta.smp.aplikasi.desktop.select.kelas.SelectKelasController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.select.kelas.SelectKelasController">
    <children>
       <Label fx:id="lblSelectKelas" alignment="CENTER" layoutX="26.0" layoutY="35.0" prefHeight="17.0" prefWidth="357.0" text="Select Kelas Siswa">
          <font>
@@ -31,7 +30,15 @@
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lblPilihTahun" layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="100.0" text="Tahun">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
                </children>
@@ -44,13 +51,18 @@
                   <ComboBox fx:id="comboKelas" onAction="#comboPilihKelas" prefWidth="150.0" promptText="Pilih Kelas" />
                   <ComboBox fx:id="comboSemester" layoutX="10.0" layoutY="10.0" onAction="#comboPilihSemester" prefWidth="150.0" promptText="Pilih Semester">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="comboTahun" layoutX="10.0" layoutY="50.0" onAction="#comboPilihTahun" prefWidth="150.0" promptText="Pilih Tahun">
+                     <VBox.margin>
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </ComboBox>
                </children>
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="btnPilih" layoutX="200.0" layoutY="210.0" mnemonicParsing="false" onAction="#pilihKelas" prefHeight="25.0" prefWidth="86.0" text="Pilih" />
+      <Button fx:id="btnPilih" layoutX="181.0" layoutY="211.0" mnemonicParsing="false" onAction="#pilihKelas" prefHeight="25.0" prefWidth="86.0" text="Pilih" />
    </children>
 </AnchorPane>

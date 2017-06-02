@@ -20,7 +20,7 @@ import net.sandikta.smp.aplikasi.entities.enums.Kelas;
 import net.sandikta.smp.aplikasi.entities.enums.Semester;
 
 @Entity
-@Table(name="TAHUN_PELAJARAN_SISWA")
+@Table(name="TAHUN_PELAJARAN")
 public class TahunPelajaran {
 	
 	@Id

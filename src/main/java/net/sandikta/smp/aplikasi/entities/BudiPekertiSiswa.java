@@ -13,7 +13,7 @@ import net.sandikta.smp.aplikasi.entities.enums.NamaBudiPekerti;
 import net.sandikta.smp.aplikasi.entities.enums.NilaiBudiPekerti;
 
 @Entity
-@Table(name="BUDI_PEKERTI_SISWA")
+@Table(name="NILAI_BUDI_PEKERTI")
 public class BudiPekertiSiswa {
 
 	@Id

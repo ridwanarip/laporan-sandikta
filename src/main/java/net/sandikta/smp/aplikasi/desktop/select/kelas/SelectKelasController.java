@@ -40,9 +40,13 @@ public class SelectKelasController implements Initializable {
 	@FXML
 	private Label lblPilihSemester;
 	@FXML
+	private Label lblPilihTahun;
+	@FXML
 	private ComboBox<Kelas> comboKelas;
 	@FXML
 	private ComboBox<Semester> comboSemester;
+	@FXML
+	private ComboBox<String> comboTahun;
 	@FXML
 	private Button btnPilih;
 	
@@ -50,11 +54,14 @@ public class SelectKelasController implements Initializable {
 			FXCollections.observableArrayList(Kelas.values());
 	private ObservableList<Semester> listSemester = 
 			FXCollections.observableArrayList(Semester.values());
+	ObservableList<String> listTahun = FXCollections.observableArrayList(
+			"2015/2016", "2016/2017", "2017/2018", "2018/2019", "2019/2020");
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		comboKelas.setItems(listKelas);
 		comboSemester.setItems(listSemester);
+		comboTahun.setItems(listTahun);
 	}
 
 	@FXML
@@ -64,6 +71,10 @@ public class SelectKelasController implements Initializable {
 	@FXML
 	public void comboPilihSemester(ActionEvent event) {
 		tahunPelajaran.setSemester(comboSemester.getValue());
+	}
+	@FXML
+	public void comboPilihTahun(ActionEvent event) {
+		tahunPelajaran.setTahun(comboTahun.getValue());
 	}
 	
 	@FXML

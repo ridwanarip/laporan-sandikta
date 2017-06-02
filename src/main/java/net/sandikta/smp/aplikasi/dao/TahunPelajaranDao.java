@@ -38,14 +38,17 @@ public class TahunPelajaranDao implements Dao<TahunPelajaran, Long> {
 		return tahunPelajaran;
 	}
 	
-	public List<TahunPelajaran> findByKelasSemester(Kelas kelas, Semester sms) {
+	public List<TahunPelajaran> findByTahun(Kelas kelas, Semester sms, String tahun) {
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<TahunPelajaran> criteriaQuery = builder.createQuery(TahunPelajaran.class);
 		Root<TahunPelajaran> root = criteriaQuery.from(TahunPelajaran.class);
 		Path<Kelas> idKelas = root.get("kelas");
 		Path<Semester> idSemester = root.get("semester");
+		Path<String> idTahun = root.get("tahun");
 		criteriaQuery.select(root)
-				.where(builder.and(builder.equal(idKelas, kelas), builder.equal(idSemester, sms)));
+				.where(builder.and(builder.equal(idKelas, kelas), 
+						builder.equal(idSemester, sms),
+						builder.equal(idTahun, tahun)));
 		TypedQuery<TahunPelajaran> query = session.createQuery(criteriaQuery);
 		
 		List<TahunPelajaran> tahunPelajaran = query.getResultList();

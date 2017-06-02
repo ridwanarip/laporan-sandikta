@@ -77,13 +77,14 @@ public class ListSiswaKelasController implements Initializable {
 	}
 	
 	public void setSiswa(TahunPelajaran tPelajaran) {
-		this.tahunPelajaranObser.addAll(getAllByKelasSemester(
-				tPelajaran.getKelas(), tPelajaran.getSemester()));
+		this.tahunPelajaranObser.addAll(getAllByTahun(
+				tPelajaran.getKelas(), tPelajaran.getSemester(),
+				tPelajaran.getTahun()));
 		this.lblKelas.setText("Kelas: " + tPelajaran.getKelas());
 		this.lblSemester.setText("Semester: " + tPelajaran.getSemester());
 	}
 	
-	public List<TahunPelajaran> getAllByKelasSemester(Kelas kelas, Semester sms) {
+	public List<TahunPelajaran> getAllByTahun(Kelas kelas, Semester sms, String tahun) {
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		try {
@@ -93,7 +94,7 @@ public class ListSiswaKelasController implements Initializable {
 			daoTahunPelajaran.setSession(session);
 			
 			List<TahunPelajaran> tahunPelajaran = ((TahunPelajaranDao) 
-					daoTahunPelajaran).findByKelasSemester(kelas, sms);
+					daoTahunPelajaran).findByTahun(kelas, sms, tahun);
 			return tahunPelajaran;
 		} catch (Exception ex) {
 			ex.printStackTrace();

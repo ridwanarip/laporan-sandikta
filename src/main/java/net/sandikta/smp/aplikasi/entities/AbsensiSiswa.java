@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import net.sandikta.smp.aplikasi.entities.enums.NamaAbsensi;
 
 @Entity
-@Table(name="ABSESNSI_SISWA")
+@Table(name="NILAI_ABSENSI")
 public class AbsensiSiswa {
 
 	@Id

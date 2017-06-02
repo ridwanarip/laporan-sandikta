@@ -58,7 +58,7 @@ public class SaveSiswaPdf {
 			
 			TahunPelajaran tahunPelajaran = daoTahunPelajaran.findByID(tahunP.getIdTahunPelajaran());
 			List<TahunPelajaran> listRanking = ((TahunPelajaranDao) daoTahunPelajaran).
-					findByKelasSemester(tahunP.getKelas(), tahunP.getSemester());
+					findByTahun(tahunP.getKelas(), tahunP.getSemester(), tahunP.getTahun());
 			List<Double> totalRanking = listRanking.stream()
 										.map(t -> t.getTotalNilai())
 										.sorted(Comparator.reverseOrder())
