@@ -9,7 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD:src/main/resources/net/sandikta/smp/raportapp/desktop/select/kelas/SelectKelas.fxml
 <AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.raportapp.desktop.select.kelas.SelectKelasController">
+=======
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.aplikasi.desktop.select.kelas.SelectKelasController">
+>>>>>>> 0ed4dcb4abae2fa82b89e2e1e4a43b9604392b4f:src/main/resources/net/sandikta/smp/aplikasi/desktop/select/kelas/SelectKelas.fxml
    <children>
       <Label fx:id="lblSelectKelas" alignment="CENTER" layoutX="26.0" layoutY="35.0" prefHeight="17.0" prefWidth="357.0" text="Select Data Per-Kelas">
          <font>
@@ -63,6 +67,10 @@
             </VBox>
          </children>
       </HBox>
+<<<<<<< HEAD:src/main/resources/net/sandikta/smp/raportapp/desktop/select/kelas/SelectKelas.fxml
       <Button fx:id="btnPilih" layoutX="180.0" layoutY="231.0" mnemonicParsing="false" onAction="#pilihKelas" prefHeight="25.0" prefWidth="86.0" text="Pilih" />
+=======
+      <Button fx:id="btnPilih" layoutX="181.0" layoutY="211.0" mnemonicParsing="false" onAction="#pilihKelas" prefHeight="25.0" prefWidth="86.0" text="Pilih" />
+>>>>>>> 0ed4dcb4abae2fa82b89e2e1e4a43b9604392b4f:src/main/resources/net/sandikta/smp/aplikasi/desktop/select/kelas/SelectKelas.fxml
    </children>
 </AnchorPane>
