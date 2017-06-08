@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.sandikta.smp.raportapp.desktop.select.siswa.SelectSiswaController">
+   <children>
+      <Label fx:id="lblSelectSiswa" alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="27.0" prefWidth="370.0" text="Data">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listTahunPelajaranSiswa" layoutX="15.0" layoutY="90.0" prefHeight="137.0" prefWidth="370.0" />
+      <Button fx:id="btnSaveTahunPelajaranSiswa" layoutX="168.0" layoutY="250.0" mnemonicParsing="false" onAction="#savePdfTahunPelajaranSiswa" text="Save PDF" />
+      <Button fx:id="btnDeleteTahuPelajaranSiswa" layoutX="329.0" layoutY="250.0" mnemonicParsing="false" onAction="#deleteTahunPelajaranSiswa" text="Delete" />
+      <Button fx:id="btnInsertTahunPelajaranSiswa" layoutX="15.0" layoutY="250.0" mnemonicParsing="false" onAction="#insertTahunPelajaranSiswa" text="Insert" />
+   </children>
+</AnchorPane>

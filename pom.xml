@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>net.sandikta.smp.aplikasi</groupId>
+  <groupId>net.sandikta.smp.raportapp</groupId>
   <artifactId>laporan-sandikta</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -61,7 +61,7 @@
     	<artifactId>javafx-maven-plugin</artifactId>
     	<version>8.8.3</version>
     	<configuration>
-          <mainClass>net.sandikta.smp.aplikasi.desktop.MainApp</mainClass>
+          <mainClass>net.sandikta.smp.raportapp.desktop.MainApp</mainClass>
     	</configuration>
 		</plugin>
     </plugins>
