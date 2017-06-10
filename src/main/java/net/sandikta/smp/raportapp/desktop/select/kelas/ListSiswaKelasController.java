@@ -78,25 +78,16 @@ public class ListSiswaKelasController implements Initializable {
 		}
 	}
 	
-	public void setSiswa(TahunPelajaran tPelajaran) {
-<<<<<<< HEAD:src/main/java/net/sandikta/smp/raportapp/desktop/select/kelas/ListSiswaKelasController.java
-		this.tahunPelajaranObser.addAll(getAllByKelasSemester(
-				tPelajaran.getKelas(), tPelajaran.getSemester(), tPelajaran.getTahun()));
-=======
+	public void setSiswa(TahunPelajaran tahunPelajaran) {
 		this.tahunPelajaranObser.addAll(getAllByTahun(
-				tPelajaran.getKelas(), tPelajaran.getSemester(),
-				tPelajaran.getTahun()));
->>>>>>> 0ed4dcb4abae2fa82b89e2e1e4a43b9604392b4f:src/main/java/net/sandikta/smp/aplikasi/desktop/select/kelas/ListSiswaKelasController.java
-		this.lblKelas.setText("Kelas: " + tPelajaran.getKelas());
-		this.lblSemester.setText("Semester: " + tPelajaran.getSemester());
-		this.lblTahun.setText("Tahun: " + tPelajaran.getTahun());
+				tahunPelajaran.getKelas(), tahunPelajaran.getSemester(),
+				tahunPelajaran.getTahun()));
+		this.lblKelas.setText("Kelas: " + tahunPelajaran.getKelas());
+		this.lblSemester.setText("Semester: " + tahunPelajaran.getSemester());
+		this.lblTahun.setText("Tahun: " + tahunPelajaran.getTahun());
 	}
 	
-<<<<<<< HEAD:src/main/java/net/sandikta/smp/raportapp/desktop/select/kelas/ListSiswaKelasController.java
-	public List<TahunPelajaran> getAllByKelasSemester(Kelas kelas, Semester sms, String tahun) {
-=======
 	public List<TahunPelajaran> getAllByTahun(Kelas kelas, Semester sms, String tahun) {
->>>>>>> 0ed4dcb4abae2fa82b89e2e1e4a43b9604392b4f:src/main/java/net/sandikta/smp/aplikasi/desktop/select/kelas/ListSiswaKelasController.java
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		try {

@@ -54,14 +54,9 @@ public class SelectKelasController implements Initializable {
 			FXCollections.observableArrayList(Kelas.values());
 	private ObservableList<Semester> listSemester = 
 			FXCollections.observableArrayList(Semester.values());
-<<<<<<< HEAD:src/main/java/net/sandikta/smp/raportapp/desktop/select/kelas/SelectKelasController.java
 	private ObservableList<String> listTahun = 
 			FXCollections.observableArrayList("2015/2016",
 					"2016/2017", "2017/2018", "2018/2019", "2019/2020");
-=======
-	ObservableList<String> listTahun = FXCollections.observableArrayList(
-			"2015/2016", "2016/2017", "2017/2018", "2018/2019", "2019/2020");
->>>>>>> 0ed4dcb4abae2fa82b89e2e1e4a43b9604392b4f:src/main/java/net/sandikta/smp/aplikasi/desktop/select/kelas/SelectKelasController.java
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

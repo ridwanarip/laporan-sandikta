@@ -12,11 +12,7 @@ import javax.persistence.Table;
 import net.sandikta.smp.raportapp.entities.enums.NamaAbsensi;
 
 @Entity
-<<<<<<< HEAD:src/main/java/net/sandikta/smp/raportapp/entities/AbsensiSiswa.java
 @Table(name="NILAI_ABSESNSI")
-=======
-@Table(name="NILAI_ABSENSI")
->>>>>>> 0ed4dcb4abae2fa82b89e2e1e4a43b9604392b4f:src/main/java/net/sandikta/smp/aplikasi/entities/AbsensiSiswa.java
 public class AbsensiSiswa {
 
 	@Id
